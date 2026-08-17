@@ -1,0 +1,163 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-heading: 'Outfit', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+    background-color: #12141a;
+    color: #f1f5f9;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+
+  code, pre, .font-mono {
+    font-family: var(--font-mono);
+  }
+}
+
+/* ===== MARTFURY THEME STYLING PRESETS ===== */
+
+/* Martfury Theme (Signature Envato Martfury Yellow & Modern Charcoal) */
+.theme-obsidian,
+.theme-martfury,
+:root {
+  --bg-main: #12141a;
+  --bg-card: rgba(24, 27, 34, 0.95);
+  --bg-surface: rgba(33, 38, 48, 0.85);
+  --border-color: rgba(60, 68, 84, 0.7);
+  --accent-primary: #fcb800;
+  --accent-secondary: #ffcd38;
+  --accent-glow: rgba(252, 184, 0, 0.28);
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+}
+
+/* Titanium (Crisp Martfury White / Cream Light Mode) */
+.theme-titanium {
+  --bg-main: #f4f6f9;
+  --bg-card: rgba(255, 255, 255, 0.98);
+  --bg-surface: rgba(243, 244, 246, 0.98);
+  --border-color: rgba(229, 231, 235, 0.95);
+  --accent-primary: #fcb800;
+  --accent-secondary: #f59e0b;
+  --accent-glow: rgba(252, 184, 0, 0.2);
+  --text-main: #111827;
+  --text-muted: #4b5563;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+}
+
+/* Cyberpunk (High-Energy Neon Purple & Gold) */
+.theme-cyberpunk {
+  --bg-main: #0d0617;
+  --bg-card: rgba(26, 12, 46, 0.85);
+  --bg-surface: rgba(43, 19, 76, 0.7);
+  --border-color: rgba(168, 85, 247, 0.4);
+  --accent-primary: #fcb800;
+  --accent-secondary: #ec4899;
+  --accent-glow: rgba(252, 184, 0, 0.35);
+  --text-main: #faf5ff;
+  --text-muted: #c084fc;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+}
+
+/* Emerald (FinTech & Developer Terminal Mode) */
+.theme-emerald {
+  --bg-main: #04100c;
+  --bg-card: rgba(6, 33, 23, 0.85);
+  --bg-surface: rgba(9, 48, 35, 0.7);
+  --border-color: rgba(16, 185, 129, 0.35);
+  --accent-primary: #10b981;
+  --accent-secondary: #fcb800;
+  --accent-glow: rgba(16, 185, 129, 0.3);
+  --text-main: #ecfdf5;
+  --text-muted: #6ee7b7;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+}
+
+/* Glassmorphism & Martfury Utilities */
+.glass-panel {
+  background-color: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-color);
+}
+
+.glass-dropdown {
+  background-color: var(--bg-card);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border-color);
+}
+
+.glow-hover {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glow-hover:hover {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 20px var(--accent-glow);
+}
+
+.glow-active {
+  box-shadow: 0 0 20px var(--accent-glow);
+}
+
+/* Martfury Signature Accent Colors */
+.bg-martfury-yellow {
+  background-color: #fcb800;
+}
+.text-martfury-yellow {
+  color: #fcb800;
+}
+.border-martfury-yellow {
+  border-color: #fcb800;
+}
+.hover\:bg-martfury-dark:hover {
+  background-color: #e5a700;
+}
+
+/* Custom Sleek Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.25);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(252, 184, 0, 0.6);
+}
+
+/* Subtle Shimmer for High-Priority CTAs */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer-button {
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite linear;
+}

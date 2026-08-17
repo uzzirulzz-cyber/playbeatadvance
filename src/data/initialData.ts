@@ -1,0 +1,883 @@
+import { Product, Category, Coupon, NotificationItem, User } from '../types';
+
+export const INITIAL_CATEGORIES: Category[] = [
+  { id: 'cat-all', name: 'All Products', slug: 'all', description: 'Browse our entire verified digital catalogue', icon: 'Grid', color: '#6366f1', productCount: 42 },
+  { id: 'cat-projectors', name: 'Smart Projectors', slug: 'smart-projectors', description: 'Magcubic, HY300, 4K & portable Android cinema projectors', icon: 'Projector', color: '#8b5cf6', productCount: 7, badge: 'PINNED' },
+  { id: 'cat-streaming', name: 'Streaming & Media', slug: 'streaming', description: 'Netflix UHD, Spotify Premium, YouTube & Disney+ memberships', icon: 'Tv', color: '#ec4899', productCount: 17, badge: 'HOT' },
+  { id: 'cat-ai', name: 'AI Tools & Models', slug: 'ai-tools', description: 'GPT-powered content engines, diffusion studios & voice cloning', icon: 'Sparkles', color: '#10b981', productCount: 12 },
+  { id: 'cat-software', name: 'Software Licenses', slug: 'software-licenses', description: 'Official lifetime & workstation software activation keys', icon: 'KeyRound', color: '#f59e0b', productCount: 14 },
+  { id: 'cat-saas', name: 'SaaS Subscriptions', slug: 'saas-subscriptions', description: 'Cloud automation, email dispatch, and team platforms', icon: 'RefreshCw', color: '#06b6d4', productCount: 9 },
+  { id: 'cat-games', name: 'Games & Keys', slug: 'games', description: 'Steam, Epic & console digital redeemable game keys', icon: 'Gamepad2', color: '#f97316', productCount: 11 },
+  { id: 'cat-giftcards', name: 'Gift Cards', slug: 'gift-cards', description: 'Instant vouchers for Steam, Amazon, Apple & Netflix', icon: 'Gift', color: '#ef4444', productCount: 8 },
+  { id: 'cat-templates', name: 'Templates & Code', slug: 'templates', description: 'React, Next.js, Figma kits, and design blueprints', icon: 'LayoutTemplate', color: '#14b8a6', productCount: 10 },
+];
+
+export const INITIAL_PRODUCTS: Product[] = [
+  // --- Smart Projectors Collection (Pinned) ---
+  {
+    id: 'prod-proj-hy300-pro',
+    title: 'Magcubic HY300 PRO Smart Projector',
+    slug: 'magcubic-hy300-pro-smart-projector',
+    shortDescription: 'Native 720P / 1080P 4K Decoded Android 11 Smart Projector with 180° rotatable swivel stand & WiFi 6.',
+    description: 'The ultra-popular Magcubic HY300 PRO delivers versatile ceiling and wall projection with its 180-degree flexible rotation bracket. Running smooth Android 11 with built-in YouTube, Netflix, and Prime Video apps. Features auto keystone correction, dual-band WiFi 6, and crisp built-in Hi-Fi speakers.',
+    type: 'HARDWARE',
+    status: 'PUBLISHED',
+    price: 30500,
+    costPrice: 22500,
+    profit: 8000,
+    currency: 'PKR',
+    sku: 'MAGCUBIC-HY300-PRO',
+    stock: 24,
+    cover: {
+      type: 'image',
+      image: 'https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=1000&q=80',
+      colors: ['#3b82f6', '#1d4ed8'],
+      icon: 'Projector'
+    },
+    tags: ['Magcubic', 'HY300 PRO', 'Smart Projector', 'Android 11', '180 Rotation', 'WiFi 6'],
+    licenseType: '1-Year Official Pakistan Replacement Warranty',
+    version: 'HY300 PRO (2026 Edition)',
+    featured: true,
+    rating: 4.9,
+    reviewCount: 142,
+    salesCount: 680,
+    vendor: { id: 'v-magcubic', storeName: 'Magcubic Official Store', slug: 'magcubic-pk', verified: true, rating: 4.96, salesCount: 3420 },
+    category: { id: 'cat-projectors', name: 'Smart Projectors', slug: 'smart-projectors', icon: 'Projector', color: '#8b5cf6' },
+    specs: {
+      'Model': 'Magcubic HY300 PRO',
+      'Resolution': 'Native 1280x720P (4K Ultra HD Decoding)',
+      'Brightness': '260 ANSI Lumens',
+      'OS': 'Android 11.0 with Google Play Store',
+      'Projection Angle': '180° Free Swivel Rotation',
+      'Audio': '5W Hi-Fi Chamber Stereo Speaker',
+      'Connectivity': 'Dual-Band WiFi 6 (2.4G/5.8G), Bluetooth 5.0, HDMI, USB'
+    },
+    features: [
+      '180° Flexible projection angle for instant ceiling cinema',
+      'Auto-keystone vertical correction in real-time',
+      'Pre-installed YouTube, Netflix, Disney+, and browser',
+      'Ultra low noise cooling fan (<25dB operating sound)',
+      'Includes smart Bluetooth remote, HDMI cable & power cord'
+    ],
+    deliveryType: 'POSTAL_SHIPPING',
+    reviews: [
+      { id: 'r-hy1', rating: 5, title: 'Unbeatable value for money', comment: 'Ceiling projection is a game changer in bedroom. Fast delivery via TCS.', verified: true, createdAt: '2 days ago', authorName: 'Zubair Shah', helpfulCount: 38 },
+      { id: 'r-hy2', rating: 5, title: 'Colors are super vibrant', comment: 'Connected to WiFi 6 smoothly. Runs Netflix with zero lag.', verified: true, createdAt: '5 days ago', authorName: 'Ayesha Siddiqui', helpfulCount: 19 }
+    ]
+  },
+  {
+    id: 'prod-proj-hy300-plus',
+    title: 'HY300 Plus Smart Projector',
+    slug: 'hy300-plus-smart-projector',
+    shortDescription: 'Upgraded high-lumen optical engine with Android TV OS, 180° rotatable gimbal & fast screen mirroring.',
+    description: 'The upgraded HY300 Plus brings enhanced color saturation, higher contrast ratio, and rapid wireless AirPlay / Miracast screen mirroring. Perfect for gaming, presentations, and late-night binge watching on up to 150-inch screens.',
+    type: 'HARDWARE',
+    status: 'PUBLISHED',
+    price: 30500,
+    costPrice: 22500,
+    profit: 8000,
+    currency: 'PKR',
+    sku: 'HY300-PLUS-01',
+    stock: 18,
+    cover: {
+      type: 'image',
+      image: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=1000&q=80',
+      colors: ['#8b5cf6', '#6d28d9'],
+      icon: 'Projector'
+    },
+    tags: ['HY300 Plus', 'Projector', 'Android TV', '180 Gimbal', 'WiFi 6'],
+    licenseType: '1-Year Official Pakistan Replacement Warranty',
+    version: 'HY300 Plus',
+    featured: true,
+    rating: 4.88,
+    reviewCount: 98,
+    salesCount: 430,
+    vendor: { id: 'v-magcubic', storeName: 'Magcubic Official Store', slug: 'magcubic-pk', verified: true, rating: 4.96, salesCount: 3420 },
+    category: { id: 'cat-projectors', name: 'Smart Projectors', slug: 'smart-projectors', icon: 'Projector', color: '#8b5cf6' },
+    specs: {
+      'Model': 'HY300 Plus',
+      'Resolution': 'Native 720P (Supports 1080P/4K video)',
+      'Brightness': '280 ANSI Lumens',
+      'Display Size': '40" to 150" Display',
+      'Wireless': 'Dual WiFi 6 + Bluetooth 5.2',
+      'Audio': 'Hi-Fi Stereo Acoustic Driver'
+    },
+    features: ['Upgraded optical light path', 'Wireless smartphone screen casting', 'Full 180° rotation gimbal mount'],
+    deliveryType: 'POSTAL_SHIPPING'
+  },
+  {
+    id: 'prod-proj-hy300pro-plus',
+    title: 'Magcubic HY300Pro Plus Projector',
+    slug: 'magcubic-hy300pro-plus-projector',
+    shortDescription: 'High-performance edition with 300 ANSI lumens, electric motorized focus & 4K decoding chip.',
+    description: 'Engineered for power users, the Magcubic HY300Pro Plus features precision motorized focus via remote control, upgraded 300 ANSI lumens LED light source, and rapid dual-band wireless throughput.',
+    type: 'HARDWARE',
+    status: 'PUBLISHED',
+    price: 34500,
+    costPrice: 26500,
+    profit: 8000,
+    currency: 'PKR',
+    sku: 'MAGCUBIC-HY300PRO-PLUS',
+    stock: 22,
+    cover: {
+      type: 'image',
+      image: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=1000&q=80',
+      colors: ['#06b6d4', '#0891b2'],
+      icon: 'Projector'
+    },
+    tags: ['Magcubic', 'HY300Pro Plus', 'Electric Focus', '4K Decoding', '300 ANSI'],
+    licenseType: '1-Year Official Pakistan Replacement Warranty',
+    version: 'HY300Pro Plus Flagship',
+    featured: true,
+    rating: 4.92,
+    reviewCount: 116,
+    salesCount: 510,
+    vendor: { id: 'v-magcubic', storeName: 'Magcubic Official Store', slug: 'magcubic-pk', verified: true, rating: 4.96, salesCount: 3420 },
+    category: { id: 'cat-projectors', name: 'Smart Projectors', slug: 'smart-projectors', icon: 'Projector', color: '#8b5cf6' },
+    specs: {
+      'Model': 'Magcubic HY300Pro Plus',
+      'Resolution': '1080P Decoded / 4K Playback Support',
+      'Brightness': '300 ANSI Lumens',
+      'Focus': 'Electric Remote-Controlled Focus',
+      'OS': 'Android 11.0 Smart UI',
+      'Port Array': 'HDMI 2.0, USB 2.0, 3.5mm AUX Audio'
+    },
+    features: ['Electric one-touch focus adjustment', 'Sealed dust-resistant optical glass', 'Support for Bluetooth 5.2 headphones & soundbars'],
+    deliveryType: 'POSTAL_SHIPPING'
+  },
+  {
+    id: 'prod-proj-ht23',
+    title: 'HT23 Smart Cinema Projector',
+    slug: 'ht23-smart-cinema-projector',
+    shortDescription: '350 ANSI Lumens with HDR10 contrast enhancement, dual stereo drivers & high-speed gaming latency.',
+    description: 'The HT23 Cinema Projector offers enhanced color accuracy, deep blacks with HDR10 processing, and dual acoustic drivers for an immersive audio-visual home theater experience without external speakers.',
+    type: 'HARDWARE',
+    status: 'PUBLISHED',
+    price: 34500,
+    costPrice: 26500,
+    profit: 8000,
+    currency: 'PKR',
+    sku: 'HT23-CINEMA-01',
+    stock: 15,
+    cover: {
+      type: 'image',
+      image: 'https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&w=1000&q=80',
+      colors: ['#f59e0b', '#d97706'],
+      icon: 'Projector'
+    },
+    tags: ['HT23', 'Cinema Projector', 'HDR10', '350 ANSI', 'Dual Audio'],
+    licenseType: '1-Year Official Pakistan Replacement Warranty',
+    version: 'HT23 Cinema',
+    featured: true,
+    rating: 4.89,
+    reviewCount: 74,
+    salesCount: 320,
+    vendor: { id: 'v-lumix', storeName: 'Lumix Home Cinema', slug: 'lumix-cinema', verified: true, rating: 4.95, salesCount: 1820 },
+    category: { id: 'cat-projectors', name: 'Smart Projectors', slug: 'smart-projectors', icon: 'Projector', color: '#8b5cf6' },
+    specs: {
+      'Model': 'HT23 Smart Cinema',
+      'Resolution': 'Native 1080P Full HD (4K video input)',
+      'Brightness': '350 ANSI Lumens',
+      'Contrast Ratio': '3,000:1 Dynamic Contrast',
+      'Audio': 'Dual 5W Stereo Subwoofer Chamber'
+    },
+    features: ['HDR10 dynamic range tuning', 'Low latency game mode (18ms)', 'Four-corner digital trapezoid correction'],
+    deliveryType: 'POSTAL_SHIPPING'
+  },
+  {
+    id: 'prod-proj-hcs350pro',
+    title: 'HCS350PRO Smart Laser Projector',
+    slug: 'hcs350pro-smart-laser-projector',
+    shortDescription: '500 ANSI Lumens powerhouse with native 1080P physical resolution, 4-point auto keystone & 4K decoding.',
+    description: 'Step into commercial-grade brightness. The HCS350PRO delivers 500 ANSI lumens of crystal-clear luminosity, ensuring crisp visuals even in ambient lit rooms. Features native physical 1080P resolution and smart auto-keystone sensors.',
+    type: 'HARDWARE',
+    status: 'PUBLISHED',
+    price: 42500,
+    costPrice: 34500,
+    profit: 8000,
+    currency: 'PKR',
+    sku: 'HCS350PRO-4K-01',
+    stock: 12,
+    cover: {
+      type: 'image',
+      image: 'https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?auto=format&fit=crop&w=1000&q=80',
+      colors: ['#ec4899', '#db2777'],
+      icon: 'Projector'
+    },
+    tags: ['HCS350PRO', '500 ANSI', 'Native 1080P', '4K Support', 'Auto Keystone'],
+    licenseType: '1-Year Official Pakistan Replacement Warranty',
+    version: 'HCS350PRO Enterprise',
+    featured: true,
+    rating: 4.95,
+    reviewCount: 88,
+    salesCount: 390,
+    vendor: { id: 'v-lumix', storeName: 'Lumix Home Cinema', slug: 'lumix-cinema', verified: true, rating: 4.95, salesCount: 1820 },
+    category: { id: 'cat-projectors', name: 'Smart Projectors', slug: 'smart-projectors', icon: 'Projector', color: '#8b5cf6' },
+    specs: {
+      'Model': 'HCS350PRO',
+      'Resolution': 'Native 1920x1080P Physical (4K UHD Decoded)',
+      'Brightness': '500 ANSI Lumens',
+      'Screen Size': '50" to 200" Display',
+      'Audio': 'Dual 10W Subwoofer Setup',
+      'OS': 'Android TV 12.0 with Full Google Ecosystem'
+    },
+    features: ['Real-time 4-point automatic keystone calibration', '500 ANSI bright optical engine', 'Sealed optics with 40,000 hrs LED lifespan'],
+    deliveryType: 'POSTAL_SHIPPING'
+  },
+  {
+    id: 'prod-proj-hm103a',
+    title: 'HM103-A Ultra-Bright Smart Projector',
+    slug: 'hm103-a-ultra-bright-projector',
+    shortDescription: '650 ANSI Lumens ultra-luminous projector with 1-second instant AI auto-focus & sealed dustproof engine.',
+    description: 'Top-tier home theater immersion. The HM103-A packs 650 ANSI lumens of blinding brightness with instant 1-second laser autofocus and omnidirectional obstacle avoidance. Handles giant 200-inch projections effortlessly.',
+    type: 'HARDWARE',
+    status: 'PUBLISHED',
+    price: 47000,
+    costPrice: 39000,
+    profit: 8000,
+    currency: 'PKR',
+    sku: 'HM103-A-ULTRA',
+    stock: 9,
+    cover: {
+      type: 'image',
+      image: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1000&q=80',
+      colors: ['#10b981', '#059669'],
+      icon: 'Projector'
+    },
+    tags: ['HM103-A', '650 ANSI', 'AI Auto Focus', 'Dustproof', '200 Inch'],
+    licenseType: '1-Year Official Pakistan Replacement Warranty',
+    version: 'HM103-A Flagship',
+    featured: true,
+    rating: 4.97,
+    reviewCount: 65,
+    salesCount: 260,
+    vendor: { id: 'v-lumix', storeName: 'Lumix Home Cinema', slug: 'lumix-cinema', verified: true, rating: 4.95, salesCount: 1820 },
+    category: { id: 'cat-projectors', name: 'Smart Projectors', slug: 'smart-projectors', icon: 'Projector', color: '#8b5cf6' },
+    specs: {
+      'Model': 'HM103-A',
+      'Resolution': 'Native 1080P Full HD (4K HDR10+)',
+      'Brightness': '650 ANSI Lumens Ultra-Bright',
+      'Auto-Focus': 'AI ToF 1-Second Instant Focus Sensor',
+      'Audio': 'Dolby Audio 20W Chamber Acoustics',
+      'System': 'Android 12.0 OS'
+    },
+    features: ['Instant ToF laser autofocus sensor', 'Complete sealed dustproof optical assembly', 'MEMC 60fps frame rate stabilization'],
+    deliveryType: 'POSTAL_SHIPPING'
+  },
+  {
+    id: 'prod-proj-hy7-battery',
+    title: 'HY7 Built-in Battery Smart Projector',
+    slug: 'hy7-builtin-battery-smart-projector',
+    shortDescription: 'Ultimate portable outdoor cinema with built-in 12,000mAh battery, 360° rotating gimbal & Type-C fast charging.',
+    description: 'Take your cinema anywhere — rooftop BBQ, camping adventures, or bedroom ceilings without power cords. The HY7 features a massive built-in 12,000mAh rechargeable lithium battery providing up to 4.5 hours of continuous playback, full 360-degree rotating gimbal, and fast Type-C power bank charging.',
+    type: 'HARDWARE',
+    status: 'PUBLISHED',
+    price: 52500,
+    costPrice: 44500,
+    profit: 8000,
+    currency: 'PKR',
+    sku: 'HY7-BATTERY-CINEMA',
+    stock: 14,
+    cover: {
+      type: 'image',
+      image: 'https://images.unsplash.com/photo-1524712245354-2c4e5e7121c0?auto=format&fit=crop&w=1000&q=80',
+      colors: ['#6366f1', '#4f46e5'],
+      icon: 'Projector'
+    },
+    tags: ['HY7', 'Battery Projector', 'Outdoor Cinema', '12000mAh', '360 Gimbal', 'Type-C'],
+    licenseType: '1-Year Official Pakistan Replacement Warranty',
+    version: 'HY7 Outdoor Edition',
+    featured: true,
+    rating: 4.98,
+    reviewCount: 92,
+    salesCount: 380,
+    vendor: { id: 'v-lumix', storeName: 'Lumix Home Cinema', slug: 'lumix-cinema', verified: true, rating: 4.95, salesCount: 1820 },
+    category: { id: 'cat-projectors', name: 'Smart Projectors', slug: 'smart-projectors', icon: 'Projector', color: '#8b5cf6' },
+    specs: {
+      'Model': 'HY7 Battery Cinema',
+      'Battery Capacity': '12,000mAh Built-in Lithium Battery (3.5 - 4.5 Hours Playtime)',
+      'Resolution': 'Native 1080P (4K Video Decoding)',
+      'Brightness': '400 ANSI Lumens',
+      'Rotation': '360° Omnidirectional Gimbal Stand',
+      'Charging': 'Type-C Fast Power Bank / Wall Adapter Charging',
+      'Weight': '820g Ultra-Portable'
+    },
+    features: [
+      'Built-in 12,000mAh battery for cord-free cinema anywhere',
+      'Full 360° rotating gimbal bracket included',
+      'Type-C fast charging from standard 65W power banks',
+      'Bluetooth speaker standalone audio mode',
+      'Includes travel storage bag & remote'
+    ],
+    deliveryType: 'POSTAL_SHIPPING',
+    reviews: [
+      { id: 'r-hy7-1', rating: 5, title: 'Incredible for rooftop movies and trips', comment: 'Battery easily lasted through a full 3-hour movie with power to spare. Best projector in Pakistan!', verified: true, createdAt: '3 days ago', authorName: 'Kamran Ali', helpfulCount: 45 }
+    ]
+  },
+
+  // --- Streaming Subscriptions ---
+  {
+    id: 'prod-stream-1',
+    title: 'Netflix Premium 4K UHD — 12 Months Private Profile',
+    slug: 'netflix-premium-4k-uhd-12-months',
+    shortDescription: '12 Months private Ultra HD 4K profile with personal PIN lock, watch history, and instant key delivery.',
+    description: 'Enjoy 365 days of uninterrupted Netflix Ultra HD streaming on any smart TV, projector, phone, or laptop. You will receive a private profile locked with your own customized 4-digit security PIN. Full warranty with 24/7 instant replacement guarantee.',
+    type: 'STREAMING',
+    status: 'PUBLISHED',
+    price: 13860,
+    discountPrice: 11999,
+    currency: 'PKR',
+    sku: 'NFLX-4K-12M-01',
+    stock: 999,
+    cover: {
+      type: 'gradient',
+      colors: ['#e50914', '#b81d24'],
+      icon: 'Tv'
+    },
+    tags: ['Netflix', '4K UHD', 'Streaming', '12 Months', 'Private Profile'],
+    licenseType: '12-Month Replacement Warranty',
+    featured: true,
+    rating: 4.96,
+    reviewCount: 420,
+    salesCount: 3840,
+    vendor: { id: 'v-streampro', storeName: 'StreamVault Direct', slug: 'streamvault', verified: true, rating: 4.98, salesCount: 14200 },
+    category: { id: 'cat-streaming', name: 'Streaming & Media', slug: 'streaming', icon: 'Tv', color: '#ec4899' },
+    specs: {
+      'Quality': '4K HDR + Dolby Vision + Spatial Audio',
+      'Duration': '12 Months (365 Days)',
+      'Devices': 'Smart TVs, Projectors, Mobile, PC, Apple TV',
+      'Activation': 'Instant Automatic Credential Delivery via Email & Portal'
+    },
+    features: [
+      'Private locked profile with your personal 4-digit PIN',
+      'Save your own watch history and personalized algorithm',
+      'Auto-renewing subscription with zero dropouts',
+      'Full replacement guarantee for the complete duration'
+    ],
+    deliveryType: 'INSTANT_KEY',
+    reviews: [
+      { id: 'r-nf1', rating: 5, title: 'Instant delivery, worked right away!', comment: 'Received credentials within 3 seconds of paying with JazzCash. 4K HDR works flawlessly on my projector.', verified: true, createdAt: 'Yesterday', authorName: 'Bilal Khan', helpfulCount: 41 },
+      { id: 'r-nf2', rating: 5, title: 'Best service in Pakistan', comment: 'Have been using StreamVault for 2 years now. Support is always on point.', verified: true, createdAt: '5 days ago', authorName: 'Sara Qureshi', helpfulCount: 18 }
+    ]
+  },
+  {
+    id: 'prod-stream-2',
+    title: 'Spotify Premium Individual — 12 Months Lifetime Warranty',
+    slug: 'spotify-premium-12-months-warranty',
+    shortDescription: 'Ad-free high-fidelity 320kbps music streaming, offline song downloads & unlimited skips.',
+    description: 'Upgrade your existing Spotify account or receive a dedicated premium account for 12 months. Enjoy lossless listening, custom playlists, seamless audio quality, and offline downloads without annoying interruptions.',
+    type: 'STREAMING',
+    status: 'PUBLISHED',
+    price: 6776,
+    discountPrice: 5499,
+    currency: 'PKR',
+    sku: 'SPOT-PREM-12M',
+    stock: 999,
+    cover: {
+      type: 'gradient',
+      colors: ['#1db954', '#1ed760'],
+      icon: 'Music2'
+    },
+    tags: ['Spotify', 'Music', 'Hi-Fi', 'Offline', '12 Months'],
+    licenseType: '1-Year Full Warranty',
+    featured: true,
+    rating: 4.93,
+    reviewCount: 310,
+    salesCount: 2950,
+    vendor: { id: 'v-streampro', storeName: 'StreamVault Direct', slug: 'streamvault', verified: true, rating: 4.98, salesCount: 14200 },
+    category: { id: 'cat-streaming', name: 'Streaming & Media', slug: 'streaming', icon: 'Tv', color: '#ec4899' },
+    deliveryType: 'INSTANT_KEY'
+  },
+  {
+    id: 'prod-stream-3',
+    title: 'YouTube Premium + YouTube Music — 12 Months',
+    slug: 'youtube-premium-12-months-family-invite',
+    shortDescription: 'Zero video ads, background play on mobile/tablet, picture-in-picture & full YouTube Music catalog.',
+    description: 'Stream YouTube completely ad-free. Background audio keeps playing when your phone screen is locked or while switching between apps.',
+    type: 'STREAMING',
+    status: 'PUBLISHED',
+    price: 8624,
+    discountPrice: 6999,
+    currency: 'PKR',
+    sku: 'YT-PREM-12M',
+    stock: 500,
+    cover: {
+      type: 'gradient',
+      colors: ['#ff0000', '#cc0000'],
+      icon: 'Tv'
+    },
+    tags: ['YouTube', 'Ad-Free', 'Music', 'Background Play'],
+    licenseType: '12 Months Replacement Warranty',
+    featured: false,
+    rating: 4.91,
+    reviewCount: 180,
+    salesCount: 1480,
+    vendor: { id: 'v-streampro', storeName: 'StreamVault Direct', slug: 'streamvault', verified: true, rating: 4.98, salesCount: 14200 },
+    category: { id: 'cat-streaming', name: 'Streaming & Media', slug: 'streaming', icon: 'Tv', color: '#ec4899' },
+    deliveryType: 'ACCOUNT_INVITE'
+  },
+  {
+    id: 'prod-stream-4',
+    title: 'Disney+ Premium 12 Months — 4K IMAX Enhanced',
+    slug: 'disney-plus-premium-12-months',
+    shortDescription: 'Full access to Disney, Marvel, Star Wars, Pixar, and National Geographic in 4K UHD IMAX format.',
+    description: 'Stream all Marvel Cinematic Universe titles, Star Wars series, and Disney animated classics with HDR10 and Dolby Atmos audio.',
+    type: 'STREAMING',
+    status: 'PUBLISHED',
+    price: 11704,
+    discountPrice: 8999,
+    currency: 'PKR',
+    sku: 'DISNEY-PREM-12M',
+    stock: 350,
+    cover: {
+      type: 'gradient',
+      colors: ['#113ccf', '#001b69'],
+      icon: 'Tv'
+    },
+    tags: ['Disney+', 'Marvel', 'Star Wars', '4K'],
+    licenseType: '12 Months Warranty',
+    rating: 4.88,
+    reviewCount: 142,
+    salesCount: 930,
+    vendor: { id: 'v-streampro', storeName: 'StreamVault Direct', slug: 'streamvault', verified: true, rating: 4.98, salesCount: 14200 },
+    category: { id: 'cat-streaming', name: 'Streaming & Media', slug: 'streaming', icon: 'Tv', color: '#ec4899' },
+    deliveryType: 'INSTANT_KEY'
+  },
+
+  // --- AI Tools & Models ---
+  {
+    id: 'prod-ai-1',
+    title: 'NovaScript AI Pro — Long-form SEO Content Engine',
+    slug: 'novascript-ai-pro-content-engine',
+    shortDescription: 'GPT-5 powered SEO article generator with automatic SERP competitor analysis & tone matching.',
+    description: 'NovaScript AI writes comprehensive, high-ranking 3,000+ word technical articles, sales pages, and high-converting marketing campaigns. Features integrated citation search, plagiarism checking, and direct export to WordPress and Ghost CMS.',
+    type: 'AI_TOOL',
+    status: 'PUBLISHED',
+    price: 22120, // $79 in PKR approx
+    discountPrice: 16520, // $59 in PKR
+    currency: 'PKR',
+    sku: 'NOVA-AI-PRO',
+    stock: -1,
+    cover: {
+      type: 'gradient',
+      colors: ['#10b981', '#059669'],
+      icon: 'Sparkles'
+    },
+    tags: ['AI', 'GPT-5', 'Copywriting', 'SEO', 'Automation'],
+    licenseType: 'Lifetime Unlimited Activation Key',
+    version: 'v4.2.0',
+    changelog: [
+      { version: '4.2.0', date: 'August 2026', notes: 'Added Gemini 2.5 Pro & Claude 3.7 Sonnet multi-agent synthesis engines' },
+      { version: '4.1.0', date: 'July 2026', notes: 'Automated internal linking algorithm and schema.org markup generator' }
+    ],
+    featured: true,
+    rating: 4.94,
+    reviewCount: 260,
+    salesCount: 1980,
+    vendor: { id: 'v-novalabs', storeName: 'NovaLabs AI', slug: 'novalabs', verified: true, rating: 4.92, salesCount: 5400 },
+    category: { id: 'cat-ai', name: 'AI Tools & Models', slug: 'ai-tools', icon: 'Sparkles', color: '#10b981' },
+    features: [
+      'Unlimited monthly word generation tokens',
+      'Real-time web search grounding with factual citations',
+      'Automated semantic keyword clustering & optimization',
+      'REST API key with 100 requests per minute throughput'
+    ],
+    deliveryType: 'INSTANT_KEY'
+  },
+  {
+    id: 'prod-ai-2',
+    title: 'PixelForge Studio — Ultra Diffusion 8K Generator',
+    slug: 'pixelforge-studio-diffusion-8k',
+    shortDescription: 'Desktop & cloud generative visual studio with 60+ curated artistic style models and 8K upscaler.',
+    description: 'PixelForge transforms text prompts and reference sketches into breathtaking commercial concept art, photorealistic portraits, and UI graphics with advanced inpainting and multi-layer vector export.',
+    type: 'AI_TOOL',
+    status: 'PUBLISHED',
+    price: 36120, // $129
+    discountPrice: 27720, // $99
+    currency: 'PKR',
+    sku: 'PIXEL-FORGE-8K',
+    stock: -1,
+    cover: {
+      type: 'gradient',
+      colors: ['#8b5cf6', '#6366f1'],
+      icon: 'Sparkles'
+    },
+    tags: ['AI Image', 'Diffusion', '8K', 'Concept Art'],
+    licenseType: 'Commercial Team License (Up to 5 Seats)',
+    version: 'v3.1.2',
+    featured: true,
+    rating: 4.9,
+    reviewCount: 195,
+    salesCount: 1430,
+    vendor: { id: 'v-novalabs', storeName: 'NovaLabs AI', slug: 'novalabs', verified: true, rating: 4.92, salesCount: 5400 },
+    category: { id: 'cat-ai', name: 'AI Tools & Models', slug: 'ai-tools', icon: 'Sparkles', color: '#10b981' },
+    deliveryType: 'INSTANT_KEY'
+  },
+  {
+    id: 'prod-ai-3',
+    title: 'VoxAI Voice Cloning & Multilingual Dubbing Suite',
+    slug: 'voxai-voice-cloning-suite',
+    shortDescription: 'Zero-shot emotion-preserved voice cloning across 45 languages with lip-sync export.',
+    description: 'Clone any human voice with a 10-second reference audio sample. Produces studio-grade voiceovers, dynamic podcast audio, and multilingual dubbed video tracks with perfect inflection.',
+    type: 'AI_TOOL',
+    status: 'PUBLISHED',
+    price: 55720, // $199
+    discountPrice: 41720, // $149
+    currency: 'PKR',
+    sku: 'VOX-AI-CLONE',
+    stock: -1,
+    cover: {
+      type: 'gradient',
+      colors: ['#06b6d4', '#0891b2'],
+      icon: 'Sparkles'
+    },
+    tags: ['Voice AI', 'Audio', 'Dubbing', 'TTS'],
+    licenseType: 'Commercial Perpetual License',
+    version: 'v2.8.0',
+    featured: false,
+    rating: 4.87,
+    reviewCount: 88,
+    salesCount: 720,
+    vendor: { id: 'v-echo', storeName: 'Echo Dynamics', slug: 'echodynamics', verified: true, rating: 4.89, salesCount: 2200 },
+    category: { id: 'cat-ai', name: 'AI Tools & Models', slug: 'ai-tools', icon: 'Sparkles', color: '#10b981' },
+    deliveryType: 'INSTANT_KEY'
+  },
+
+  // --- Software Licenses ---
+  {
+    id: 'prod-soft-1',
+    title: 'DevGuard Pro — Automated App Vulnerability Scanner',
+    slug: 'devguard-pro-security-scanner',
+    shortDescription: 'Continuous CI/CD secret scanning, dependency auditing, and zero-day patch generator.',
+    description: 'DevGuard integrates seamlessly into GitHub Actions, GitLab CI, and Docker workflows to catch vulnerable dependencies, hardcoded private keys, SQL vulnerabilities, and OWASP Top 10 exploits before code reaches production.',
+    type: 'SOFTWARE_LICENSE',
+    status: 'PUBLISHED',
+    price: 69720, // $249
+    discountPrice: 53200, // $190
+    currency: 'PKR',
+    sku: 'DEV-GUARD-ENT',
+    stock: -1,
+    cover: {
+      type: 'gradient',
+      colors: ['#f59e0b', '#d97706'],
+      icon: 'KeyRound'
+    },
+    tags: ['Security', 'DevOps', 'CI/CD', 'Code Audit'],
+    licenseType: 'Enterprise Workstation Key (Perpetual)',
+    version: 'v5.4.1',
+    featured: true,
+    rating: 4.95,
+    reviewCount: 312,
+    salesCount: 2410,
+    vendor: { id: 'v-devguard', storeName: 'CyberGuard Systems', slug: 'cyberguard', verified: true, rating: 4.97, salesCount: 8900 },
+    category: { id: 'cat-software', name: 'Software Licenses', slug: 'software-licenses', icon: 'KeyRound', color: '#f59e0b' },
+    deliveryType: 'INSTANT_KEY'
+  },
+  {
+    id: 'prod-soft-2',
+    title: 'CloudVault Backup Enterprise — Multi-Cloud Sync',
+    slug: 'cloudvault-backup-enterprise-license',
+    shortDescription: 'AES-256 encrypted block-level backup utility for Linux, macOS, and Windows server clusters.',
+    description: 'Safeguard your critical databases, media files, and system snapshots with automated zero-knowledge encrypted backups to AWS S3, Google Cloud, Cloudflare R2, and Wasabi with deduplication.',
+    type: 'SOFTWARE_LICENSE',
+    status: 'PUBLISHED',
+    price: 33600,
+    discountPrice: 24900,
+    currency: 'PKR',
+    sku: 'CLOUD-VAULT-PRO',
+    stock: -1,
+    cover: {
+      type: 'gradient',
+      colors: ['#3b82f6', '#2563eb'],
+      icon: 'KeyRound'
+    },
+    tags: ['Backup', 'Cloud', 'AES-256', 'SysAdmin'],
+    licenseType: 'Lifetime 3-Server License',
+    version: 'v4.0.5',
+    rating: 4.91,
+    reviewCount: 110,
+    salesCount: 840,
+    vendor: { id: 'v-devguard', storeName: 'CyberGuard Systems', slug: 'cyberguard', verified: true, rating: 4.97, salesCount: 8900 },
+    category: { id: 'cat-software', name: 'Software Licenses', slug: 'software-licenses', icon: 'KeyRound', color: '#f59e0b' },
+    deliveryType: 'INSTANT_KEY'
+  },
+
+  // --- SaaS & Automation ---
+  {
+    id: 'prod-saas-1',
+    title: 'SheetFlow — No-Code Spreadsheet Workflow Engine',
+    slug: 'sheetflow-spreadsheet-automation-engine',
+    shortDescription: 'Connect Google Sheets & Excel to Stripe, WhatsApp, Webhooks, and AI without writing code.',
+    description: 'Transform boring tabular data into automated business machinery. Trigger WhatsApp receipts when a row updates, auto-generate invoices, and query your database using natural language prompts.',
+    type: 'SAAS_SUBSCRIPTION',
+    status: 'PUBLISHED',
+    price: 13720, // $49
+    discountPrice: 9800, // $35
+    currency: 'PKR',
+    sku: 'SHEET-FLOW-ANNUAL',
+    stock: -1,
+    cover: {
+      type: 'gradient',
+      colors: ['#14b8a6', '#0d9488'],
+      icon: 'RefreshCw'
+    },
+    tags: ['Automation', 'Google Sheets', 'No-Code', 'Workflow'],
+    licenseType: 'Annual Team Plan (5,000 runs/mo)',
+    version: 'v3.0 Cloud',
+    featured: true,
+    rating: 4.89,
+    reviewCount: 174,
+    salesCount: 1650,
+    vendor: { id: 'v-flowworks', storeName: 'FlowWorks Software', slug: 'flowworks', verified: true, rating: 4.88, salesCount: 4200 },
+    category: { id: 'cat-saas', name: 'SaaS Subscriptions', slug: 'saas-subscriptions', icon: 'RefreshCw', color: '#06b6d4' },
+    deliveryType: 'INSTANT_KEY'
+  },
+  {
+    id: 'prod-saas-2',
+    title: 'InboxZen — High-Deliverability Email Dispatcher',
+    slug: 'inboxzen-email-marketing-automation',
+    shortDescription: 'Transactional and newsletter email infrastructure with warm-up IP manager and 99.4% inbox delivery.',
+    description: 'Never land in spam again. InboxZen provides custom DKIM/SPF setup assistance, dynamic visual drag-and-drop template designer, and high-speed API endpoints delivering up to 500,000 emails per hour.',
+    type: 'SAAS_SUBSCRIPTION',
+    status: 'PUBLISHED',
+    price: 19320,
+    discountPrice: 14000,
+    currency: 'PKR',
+    sku: 'INBOX-ZEN-TIER2',
+    stock: -1,
+    cover: {
+      type: 'gradient',
+      colors: ['#6366f1', '#4f46e5'],
+      icon: 'RefreshCw'
+    },
+    tags: ['Email', 'Marketing', 'SMTP', 'Deliverability'],
+    licenseType: 'Annual Growth Tier',
+    rating: 4.86,
+    reviewCount: 130,
+    salesCount: 910,
+    vendor: { id: 'v-flowworks', storeName: 'FlowWorks Software', slug: 'flowworks', verified: true, rating: 4.88, salesCount: 4200 },
+    category: { id: 'cat-saas', name: 'SaaS Subscriptions', slug: 'saas-subscriptions', icon: 'RefreshCw', color: '#06b6d4' },
+    deliveryType: 'INSTANT_KEY'
+  },
+
+  // --- Games & Gift Cards ---
+  {
+    id: 'prod-game-1',
+    title: 'Neon Drift Racer — Deluxe Steam Global Key',
+    slug: 'neon-drift-racer-deluxe-steam-key',
+    shortDescription: 'High-octane cyberpunk arcade racer with ray-traced retro visuals, synthwave soundtrack, and multiplayer.',
+    description: 'Race through neon-drenched Tokyo skylines in customized anti-gravity hovercars. Includes all 6 DLC expansion packs, 24 licensed synthwave tracks, and cross-platform multiplayer matchmaking.',
+    type: 'GAME',
+    status: 'PUBLISHED',
+    price: 8400,
+    discountPrice: 5600,
+    currency: 'PKR',
+    sku: 'GAME-NEON-DRIFT',
+    stock: 45,
+    cover: {
+      type: 'image',
+      image: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=80',
+      colors: ['#f97316', '#ea580c'],
+      icon: 'Gamepad2'
+    },
+    tags: ['Steam', 'Racing', 'Cyberpunk', 'Multiplayer'],
+    licenseType: 'Official Steam Global Redeem Key',
+    version: 'Deluxe Edition',
+    featured: true,
+    rating: 4.92,
+    reviewCount: 520,
+    salesCount: 4210,
+    vendor: { id: 'v-gameverse', storeName: 'GameVerse Global', slug: 'gameverse', verified: true, rating: 4.96, salesCount: 28900 },
+    category: { id: 'cat-games', name: 'Games & Keys', slug: 'games', icon: 'Gamepad2', color: '#f97316' },
+    deliveryType: 'INSTANT_KEY'
+  },
+  {
+    id: 'prod-game-2',
+    title: 'Dungeon of Aether — Rogue-Lite Steam Key',
+    slug: 'dungeon-of-aether-roguelite-key',
+    shortDescription: 'Turn-based tactical dungeon crawler set in the beloved Rivals universe with dice-crafting mechanics.',
+    description: 'Uncover the mysteries of Julesvale caverns in this turn-based deck-building dungeon crawler. Master the four heroes each possessing unique battle mechanics and draftable power dice.',
+    type: 'GAME',
+    status: 'PUBLISHED',
+    price: 4200,
+    discountPrice: 2800,
+    currency: 'PKR',
+    sku: 'GAME-AETHER-KEY',
+    stock: 80,
+    cover: {
+      type: 'image',
+      image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=900&q=80',
+      colors: ['#e11d48', '#be123c'],
+      icon: 'Gamepad2'
+    },
+    tags: ['Steam', 'Rogue-lite', 'Strategy', 'Indie'],
+    licenseType: 'Steam Global Key',
+    rating: 4.85,
+    reviewCount: 95,
+    salesCount: 1100,
+    vendor: { id: 'v-gameverse', storeName: 'GameVerse Global', slug: 'gameverse', verified: true, rating: 4.96, salesCount: 28900 },
+    category: { id: 'cat-games', name: 'Games & Keys', slug: 'games', icon: 'Gamepad2', color: '#f97316' },
+    deliveryType: 'INSTANT_KEY'
+  },
+  {
+    id: 'prod-gc-1',
+    title: 'Steam Wallet Card $50 USD (Global Code)',
+    slug: 'steam-gift-card-50-usd-global',
+    shortDescription: 'Instant $50 digital wallet credit for Steam games, in-game items, and community marketplace purchases.',
+    description: 'Redeem directly on your Steam account to top up your balance. No regional restrictions, no expiration date. Perfect gift for any gamer.',
+    type: 'GIFT_CARD',
+    status: 'PUBLISHED',
+    price: 14000,
+    discountPrice: 13499,
+    currency: 'PKR',
+    sku: 'GC-STEAM-50USD',
+    stock: 250,
+    cover: {
+      type: 'gradient',
+      colors: ['#171a21', '#1b2838'],
+      icon: 'Gift'
+    },
+    tags: ['Steam', 'Gift Card', '$50 USD', 'Instant'],
+    licenseType: 'Digital Redeem Code (No Expiry)',
+    featured: true,
+    rating: 4.98,
+    reviewCount: 890,
+    salesCount: 7820,
+    vendor: { id: 'v-gameverse', storeName: 'GameVerse Global', slug: 'gameverse', verified: true, rating: 4.96, salesCount: 28900 },
+    category: { id: 'cat-giftcards', name: 'Gift Cards', slug: 'gift-cards', icon: 'Gift', color: '#ef4444' },
+    deliveryType: 'INSTANT_KEY'
+  },
+  {
+    id: 'prod-gc-2',
+    title: 'Amazon Gift Card $100 USD (US Region)',
+    slug: 'amazon-gift-card-100-usd-instant',
+    shortDescription: 'Instant $100 digital Amazon balance redeem code for millions of items with instant delivery.',
+    description: 'Shop millions of physical and digital goods on Amazon.com with instant balance claim. Code delivers within 2 seconds of payment.',
+    type: 'GIFT_CARD',
+    status: 'PUBLISHED',
+    price: 28000,
+    discountPrice: 27200,
+    currency: 'PKR',
+    sku: 'GC-AMZN-100USD',
+    stock: 120,
+    cover: {
+      type: 'gradient',
+      colors: ['#ff9900', '#146eb4'],
+      icon: 'Gift'
+    },
+    tags: ['Amazon', 'Gift Card', '$100 USD', 'Instant'],
+    licenseType: 'Digital Claim Code',
+    rating: 4.97,
+    reviewCount: 450,
+    salesCount: 3900,
+    vendor: { id: 'v-gameverse', storeName: 'GameVerse Global', slug: 'gameverse', verified: true, rating: 4.96, salesCount: 28900 },
+    category: { id: 'cat-giftcards', name: 'Gift Cards', slug: 'gift-cards', icon: 'Gift', color: '#ef4444' },
+    deliveryType: 'INSTANT_KEY'
+  },
+
+  // --- Templates, Code & Digital Assets ---
+  {
+    id: 'prod-temp-1',
+    title: 'LaunchKit Ultra — SaaS & Startup Template Bundle',
+    slug: 'launchkit-ultra-nextjs-saas-template',
+    shortDescription: 'Production-ready Next.js 15, Tailwind CSS, TypeScript, Stripe Billing, and Auth starter codebase.',
+    description: 'Ship your software startup this weekend instead of building boilerplate from scratch for two months. Includes working authentication, customer billing portal, dark/light themes, SEO blog engine, and modular component registry.',
+    type: 'TEMPLATE',
+    status: 'PUBLISHED',
+    price: 24920, // $89
+    discountPrice: 19320, // $69
+    currency: 'PKR',
+    sku: 'LAUNCH-KIT-NEXT',
+    stock: -1,
+    cover: {
+      type: 'gradient',
+      colors: ['#22c55e', '#16a34a'],
+      icon: 'LayoutTemplate'
+    },
+    tags: ['Next.js', 'React', 'Tailwind', 'SaaS Boilerplate', 'TypeScript'],
+    licenseType: 'Commercial Unlimited Projects License',
+    version: 'v4.5.0 (Next.js 15 App Router)',
+    featured: true,
+    rating: 4.96,
+    reviewCount: 340,
+    salesCount: 2800,
+    vendor: { id: 'v-designcraft', storeName: 'DesignCraft Studio', slug: 'designcraft', verified: true, rating: 4.95, salesCount: 9100 },
+    category: { id: 'cat-templates', name: 'Templates & Code', slug: 'templates', icon: 'LayoutTemplate', color: '#14b8a6' },
+    deliveryType: 'INSTANT_DOWNLOAD',
+    downloadFile: 'launchkit-ultra-v4.5.zip',
+    fileSize: '68.4 MB'
+  },
+  {
+    id: 'prod-temp-2',
+    title: 'Aurora 3D & Vector Icons Mega Pack (1,500+ Assets)',
+    slug: 'aurora-3d-vector-icons-pack',
+    shortDescription: 'Figma, Blender, PNG & SVG icon library featuring glossy glassmorphic & metallic futuristic designs.',
+    description: 'Elevate your UI design with over 1,500 high-resolution 3D rendered icons and clean scalable vector variants across finance, web3, AI, e-commerce, and communication categories.',
+    type: 'GRAPHICS',
+    status: 'PUBLISHED',
+    price: 13720,
+    discountPrice: 8960,
+    currency: 'PKR',
+    sku: 'AURORA-ICONS-3D',
+    stock: -1,
+    cover: {
+      type: 'gradient',
+      colors: ['#ec4899', '#db2777'],
+      icon: 'Palette'
+    },
+    tags: ['Icons', 'Figma', '3D Blender', 'UI Design', 'Vector'],
+    licenseType: 'Royalty-Free Commercial License',
+    version: 'v3.0',
+    rating: 4.93,
+    reviewCount: 215,
+    salesCount: 1940,
+    vendor: { id: 'v-designcraft', storeName: 'DesignCraft Studio', slug: 'designcraft', verified: true, rating: 4.95, salesCount: 9100 },
+    category: { id: 'cat-templates', name: 'Templates & Code', slug: 'templates', icon: 'LayoutTemplate', color: '#14b8a6' },
+    deliveryType: 'INSTANT_DOWNLOAD',
+    downloadFile: 'aurora-3d-vector-pack.zip',
+    fileSize: '412 MB'
+  }
+];
+
+export const INITIAL_COUPONS: Coupon[] = [
+  { code: 'PLAYBEAT20', discountPercent: 20, minSpendPKR: 5000, description: '20% off any order over Rs 5,000', expiresAt: '2026-12-31' },
+  { code: 'LAUNCH50', discountPercent: 50, minSpendPKR: 10000, maxDiscountPKR: 15000, description: 'Mega 50% discount on orders over Rs 10,000', expiresAt: '2026-12-31' },
+  { code: 'VIP10', discountPercent: 10, minSpendPKR: 0, description: '10% instant VIP discount on all digital goods', expiresAt: '2026-12-31' },
+  { code: 'STREAMMAX', discountPercent: 15, minSpendPKR: 3000, description: '15% off streaming memberships and game keys', expiresAt: '2026-12-31' }
+];
+
+export const INITIAL_NOTIFICATIONS: NotificationItem[] = [
+  {
+    id: 'n1',
+    type: 'ORDER',
+    title: 'Order Delivered Successfully',
+    message: 'Your Netflix Premium 12 Months activation key #PB-9842 is ready to view in your License Vault.',
+    read: false,
+    createdAt: '10 mins ago'
+  },
+  {
+    id: 'n2',
+    type: 'PROMO',
+    title: 'Flash Sale: 50% Off Code Live',
+    message: 'Apply coupon code LAUNCH50 at checkout to claim 50% off on all software and templates today.',
+    read: false,
+    createdAt: '2 hours ago'
+  },
+  {
+    id: 'n3',
+    type: 'SYSTEM',
+    title: 'New Smart Projector Stock Arrived',
+    message: 'Lumix CinemaPro 4K units are now back in stock with instant dispatch across all regions.',
+    read: true,
+    createdAt: '1 day ago'
+  }
+];
+
+export const DEMO_USER: User = {
+  id: 'usr-admin',
+  name: 'Alex Vance',
+  email: 'alex@playbeat.io',
+  role: 'CUSTOMER',
+  avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80',
+  balancePKR: 45000
+};

@@ -1,0 +1,176 @@
+import React from 'react';
+import { 
+  LayoutDashboard, 
+  BarChart3, 
+  Package, 
+  ShoppingCart, 
+  ShoppingBag, 
+  RefreshCw, 
+  Ticket, 
+  Users, 
+  Headphones, 
+  Tv, 
+  DollarSign, 
+  CreditCard, 
+  FileCheck2, 
+  Share2, 
+  Sparkles, 
+  Mail, 
+  Wallet, 
+  FileSpreadsheet,
+  LogOut,
+  Zap
+} from 'lucide-react';
+
+export type AdminTab = 
+  | 'dashboard'
+  | 'analytics'
+  | 'products'
+  | 'orders'
+  | 'woocommerce'
+  | 'subscriptions'
+  | 'coupons'
+  | 'users'
+  | 'support'
+  | 'iptv'
+  | 'finance'
+  | 'gateways'
+  | 'proofs'
+  | 'social'
+  | 'tiktok'
+  | 'email'
+  | 'jazzcash'
+  | 'reports';
+
+interface AdminSidebarProps {
+  activeTab: AdminTab;
+  setActiveTab: (tab: AdminTab) => void;
+  onLogout: () => void;
+}
+
+export const AdminSidebar: React.FC<AdminSidebarProps> = ({
+  activeTab,
+  setActiveTab,
+  onLogout
+}) => {
+  const sections = [
+    {
+      title: 'OVERVIEW',
+      items: [
+        { id: 'dashboard' as AdminTab, label: 'Dashboard', icon: LayoutDashboard },
+        { id: 'analytics' as AdminTab, label: 'Analytics', icon: BarChart3 },
+      ]
+    },
+    {
+      title: 'COMMERCE',
+      items: [
+        { id: 'products' as AdminTab, label: 'Products', icon: Package },
+        { id: 'orders' as AdminTab, label: 'Orders', icon: ShoppingCart },
+        { id: 'woocommerce' as AdminTab, label: 'WooCommerce', icon: ShoppingBag },
+        { id: 'subscriptions' as AdminTab, label: 'Subscriptions', icon: RefreshCw },
+        { id: 'coupons' as AdminTab, label: 'Coupons', icon: Ticket },
+      ]
+    },
+    {
+      title: 'USERS & SUPPORT',
+      items: [
+        { id: 'users' as AdminTab, label: 'Users', icon: Users },
+        { id: 'support' as AdminTab, label: 'Support', icon: Headphones },
+      ]
+    },
+    {
+      title: 'IPTV',
+      items: [
+        { id: 'iptv' as AdminTab, label: 'IPTV Management', icon: Tv },
+      ]
+    },
+    {
+      title: 'FINANCE',
+      items: [
+        { id: 'finance' as AdminTab, label: 'Finance', icon: DollarSign },
+        { id: 'gateways' as AdminTab, label: 'Payment Gateways', icon: CreditCard },
+        { id: 'proofs' as AdminTab, label: 'Payment Proof', icon: FileCheck2 },
+        { id: 'social' as AdminTab, label: 'Social Media', icon: Share2 },
+        { id: 'tiktok' as AdminTab, label: 'TikTok Leads', icon: Sparkles },
+        { id: 'email' as AdminTab, label: 'Email', icon: Mail },
+        { id: 'jazzcash' as AdminTab, label: 'JazzCash', icon: Wallet },
+        { id: 'reports' as AdminTab, label: 'Reports', icon: FileSpreadsheet },
+      ]
+    }
+  ];
+
+  return (
+    <aside className="w-64 shrink-0 bg-[#0d1322] border-r border-slate-800/80 flex flex-col justify-between min-h-[calc(100vh-65px)] select-none">
+      <div className="p-4 space-y-6 overflow-y-auto max-h-[calc(100vh-140px)] custom-scrollbar">
+        {/* Logo */}
+        <div className="flex items-center gap-2.5 px-2 py-1">
+          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+            <Zap className="w-4 h-4 text-white fill-white" />
+          </div>
+          <div>
+            <div className="text-lg font-black tracking-tight text-white flex items-center gap-1">
+              <span>play</span><span className="text-[#a855f7]">beat</span>
+            </div>
+            <div className="text-[10px] text-slate-400 font-mono -mt-1">playbeat.digital</div>
+          </div>
+        </div>
+
+        {/* Menu Navigation */}
+        <nav className="space-y-5">
+          {sections.map((section) => (
+            <div key={section.title} className="space-y-1">
+              <div className="px-3 text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+                {section.title}
+              </div>
+              <div className="space-y-0.5">
+                {section.items.map((item) => {
+                  const Icon = item.icon;
+                  const isActive = activeTab === item.id;
+                  return (
+                    <button
+                      key={item.id}
+                      onClick={() => setActiveTab(item.id)}
+                      className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold transition-all duration-150 cursor-pointer ${
+                        isActive
+                          ? 'bg-gradient-to-r from-purple-900/60 to-indigo-900/40 text-white border border-purple-500/30 shadow-sm'
+                          : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
+                      }`}
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <Icon className={`w-4 h-4 ${isActive ? 'text-[#c084fc]' : 'text-slate-400'}`} />
+                        <span>{item.label}</span>
+                      </div>
+                      {isActive && (
+                        <div className="w-1.5 h-1.5 rounded-full bg-[#c084fc] shadow-[0_0_8px_#c084fc]" />
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
+        </nav>
+      </div>
+
+      {/* User Footer Profile */}
+      <div className="p-3 border-t border-slate-800/80 bg-[#0a0e1a] flex items-center justify-between">
+        <div className="flex items-center gap-2.5">
+          <div className="w-8 h-8 rounded-full bg-purple-600 text-white font-black text-xs flex items-center justify-center shadow-md">
+            F
+          </div>
+          <div className="text-left">
+            <div className="text-xs font-bold text-white leading-tight">Founder</div>
+            <div className="text-[10px] text-slate-400 leading-tight">Admin</div>
+          </div>
+        </div>
+        <button
+          onClick={onLogout}
+          title="Sign out of wp-admin"
+          className="p-1.5 rounded-lg text-slate-400 hover:text-red-400 hover:bg-red-950/30 transition-colors cursor-pointer"
+        >
+          <LogOut className="w-4 h-4" />
+        </button>
+      </div>
+    </aside>
+  );
+};

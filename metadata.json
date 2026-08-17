@@ -1,0 +1,6 @@
+{
+  "name": "PlayBeat Digital",
+  "description": "Pakistan's premier digital marketplace for game keys, software licenses, AI tools, and gift cards. Instant delivery. Trusted by thousands.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
