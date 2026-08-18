@@ -77,7 +77,7 @@ interface StoreContextType {
   ) => Order;
   updateOrderStatus: (orderId: string, status: 'COMPLETED' | 'PENDING' | 'REFUNDED') => void;
   
-  adminLogin: (password: string) => { success: boolean; message: string };
+  adminLogin: (email: string, password: string) => { success: boolean; message: string };
   adminLogout: () => void;
   
   setSelectedProduct: (product: Product | null) => void;
@@ -410,17 +410,21 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     });
   };
 
-  const adminLogin = (password: string) => {
+  const adminLogin = (email: string, password: string) => {
+    const correctEmail = import.meta.env.REACT_APP_ADMIN_EMAIL;
     const correctPassword = import.meta.env.REACT_APP_ADMIN_PASSWORD;
-    if (!correctPassword) {
+    
+    if (!correctEmail || !correctPassword) {
       return { success: false, message: 'Admin authentication not configured. Contact system administrator.' };
     }
-    if (password === correctPassword) {
+    
+    if (email === correctEmail && password === correctPassword) {
       setIsAdminAuthenticated(true);
       localStorage.setItem('playbeat_admin_auth', 'true');
+      localStorage.setItem('playbeat_admin_email', email);
       return { success: true, message: 'Authentication successful! Welcome to PlayBeat Admin.' };
     }
-    return { success: false, message: 'Invalid credentials. Please try again.' };
+    return { success: false, message: 'Invalid email or password. Please try again.' };
   };
 
   const adminLogout = () => {

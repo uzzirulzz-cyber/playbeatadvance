@@ -51,7 +51,7 @@ export const AdminConsole: React.FC = () => {
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     setLoginError('');
-    const res = adminLogin(passwordInput);
+    const res = adminLogin(usernameInput, passwordInput);
     if (!res.success) {
       setLoginError(res.message);
     }

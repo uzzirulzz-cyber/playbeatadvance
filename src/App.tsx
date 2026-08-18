@@ -110,6 +110,16 @@ export function App() {
             {sectionConfig.heroSpotlight && <HeroSectionPremium />}
 
             <div className="space-y-8">
+              {/* Smart Projectors FEATURED AT TOP - Premium Showcase */}
+              {sectionConfig.smartProjectors && (
+                <div className="-mx-4 sm:-mx-6 px-4 sm:px-6 pb-8 relative">
+                  {/* Premium Background Glow */}
+                  <div className="absolute inset-0 -z-10 bg-gradient-to-b from-[#FFD21F]/10 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute top-0 left-0 w-96 h-96 bg-[#FFD21F]/5 rounded-full filter blur-3xl -z-10" />
+                  <SmartProjectorsSection />
+                </div>
+              )}
+
               {/* Featured Categories */}
               <div className="max-w-7xl mx-auto px-4 sm:px-6">
                 <FeaturedCategoriesPremium />
@@ -117,13 +127,6 @@ export function App() {
 
               {/* Trending Products Section */}
               <TrendingProductsSection />
-
-              {/* Smart Projectors Showcase Section - kept in flow, no sticky pinning */}
-              {sectionConfig.smartProjectors && (
-                <div className="-mx-4 sm:-mx-6 px-4 sm:px-6 pb-4">
-                  <SmartProjectorsSection />
-                </div>
-              )}
 
               {/* Limited-Time Offers Section */}
               <LimitedTimeOffersSection />
