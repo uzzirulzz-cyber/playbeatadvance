@@ -10,8 +10,8 @@
   body {
     font-family: var(--font-sans);
     overflow-x: hidden;
-    background-color: #080d1a;
-    color: #f1f5f9;
+    background-color: #FFFFFF;
+    color: #263241;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -23,22 +23,40 @@
   }
 }
 
-/* ===== SIGNATURE NAVY, GREY, BLACK & YELLOW THEME ===== */
+/* ===== PLAYBEAT DIGITAL: PREMIUM WHITE + GREY + NAVY + YELLOW THEME ===== */
 
-/* Default Navy, Grey, Black & Yellow Theme */
+/* Default Premium PlayBeat Digital Theme */
 .theme-navy,
 .theme-martfury,
 .theme-obsidian,
 :root {
-  --bg-main: #080d1a;
-  --bg-card: rgba(15, 23, 42, 0.95);
-  --bg-surface: rgba(22, 34, 56, 0.9);
-  --border-color: rgba(71, 85, 105, 0.35);
-  --accent-primary: #fcb800;
-  --accent-secondary: #fbbf24;
-  --accent-glow: rgba(252, 184, 0, 0.28);
-  --text-main: #f8fafc;
-  --text-muted: #94a3b8;
+  /* Primary Colors */
+  --primary-navy: #0B1F3A;
+  --accent-yellow: #FFD21F;
+  --bg-white: #FFFFFF;
+  --bg-light-grey: #F4F6F8;
+  --text-dark-grey: #263241;
+  --border-light: #E2E6EB;
+  
+  /* Layout Colors */
+  --bg-main: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --bg-surface: #F4F6F8;
+  --border-color: #E2E6EB;
+  
+  /* Accent Colors */
+  --accent-primary: #FFD21F;
+  --accent-secondary: #0B1F3A;
+  --accent-glow: rgba(255, 210, 31, 0.15);
+  
+  /* Text Colors */
+  --text-main: #263241;
+  --text-muted: #6B7280;
+  
+  /* Interactive States */
+  --hover-overlay: rgba(11, 31, 58, 0.05);
+  --active-overlay: rgba(255, 210, 31, 0.1);
+  
   background-color: var(--bg-main);
   color: var(--text-main);
 }

@@ -81,7 +81,7 @@ export const SmartProjectorsSection: React.FC = () => {
             </p>
           </div>
 
-          {/* Quick Stats / Admin Margin Switch */}
+          {/* Quick Stats */}
           <div className="flex items-center gap-3 shrink-0">
             {isAdminAuthenticated && (
               <button
@@ -92,14 +92,9 @@ export const SmartProjectorsSection: React.FC = () => {
                     : 'bg-slate-800/80 text-yellow-300 border-slate-700 hover:bg-slate-800'
                 }`}
               >
-                {showProfitBreakdown ? 'Hide Margin Data' : 'Show Admin Margins (Rs 8,000)'}
+                {showProfitBreakdown ? 'Hide Details' : 'Show Details'}
               </button>
             )}
-
-            <div className="hidden sm:flex flex-col items-end text-right p-2.5 rounded-xl bg-slate-900/80 border border-yellow-700/50">
-              <div className="text-[10px] text-slate-400 font-mono">Guaranteed Margin</div>
-              <div className="text-sm font-black text-yellow-400 font-mono">Rs 8,000 / unit</div>
-            </div>
           </div>
         </div>
       </div>
