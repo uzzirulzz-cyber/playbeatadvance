@@ -80,13 +80,14 @@ export const ProductDetailModal: React.FC = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md overflow-y-auto animate-in fade-in duration-200">
-      <div className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl glass-dropdown border border-indigo-500/30 shadow-2xl p-6 sm:p-8 space-y-6 my-8">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#07182d]/80 backdrop-blur-md overflow-y-auto animate-in fade-in duration-200">
+      <div className="relative w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-[32px] border border-[#FFD21F]/20 bg-[#0B1F3A]/95 shadow-[0_28px_80px_rgba(2,6,23,0.72)] p-6 sm:p-8 space-y-6 my-8">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#FFD21F]/5 via-transparent to-[#2D5BFF]/5 pointer-events-none" />
         
         {/* Close Button */}
         <button
           onClick={() => setSelectedProduct(null)}
-          className="absolute top-5 right-5 p-2 rounded-xl bg-slate-900/80 hover:bg-slate-800 border border-slate-700 text-slate-400 hover:text-white transition-all cursor-pointer z-10"
+          className="absolute top-5 right-5 p-2 rounded-xl bg-[#07182d]/80 hover:bg-[#0F2342] border border-white/10 text-slate-300 hover:text-white transition-all cursor-pointer z-10"
         >
           <X className="w-5 h-5" />
         </button>
@@ -95,7 +96,7 @@ export const ProductDetailModal: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
           {/* Left Media Preview */}
           <div className="md:col-span-5 space-y-3">
-            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-950 border border-slate-800 shadow-xl">
+            <div className="relative aspect-[4/3] rounded-[24px] overflow-hidden bg-[#07182d] border border-white/10 shadow-xl">
               {selectedProduct.cover.image ? (
                 <img 
                   src={selectedProduct.cover.image} 
@@ -125,7 +126,7 @@ export const ProductDetailModal: React.FC = () => {
             </div>
 
             {/* Quick Specs Chips */}
-            <div className="p-3.5 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-2 text-xs">
+            <div className="p-3.5 rounded-[20px] bg-[#07182d]/80 border border-white/10 space-y-2 text-xs">
               <div className="flex items-center justify-between text-slate-300">
                 <span className="text-slate-400 flex items-center gap-1.5">
                   <Zap className="w-3.5 h-3.5 text-amber-400" /> Delivery:
@@ -199,7 +200,7 @@ export const ProductDetailModal: React.FC = () => {
             </div>
 
             {/* Price & Cart Actions Box */}
-            <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-4">
+            <div className="p-4 rounded-[24px] bg-[#07182d]/80 border border-white/10 space-y-4">
               <div className="flex items-baseline justify-between">
                 <div>
                   <div className="text-[10px] text-slate-400 uppercase font-semibold">Total Price</div>
@@ -257,7 +258,7 @@ export const ProductDetailModal: React.FC = () => {
         </div>
 
         {/* Navigation Tabs */}
-        <div className="border-b border-slate-800 flex items-center gap-6 text-sm font-bold">
+        <div className="border-b border-white/10 flex items-center gap-6 text-sm font-bold">
           <button
             onClick={() => setActiveTab('overview')}
             className={`pb-3 transition-colors cursor-pointer ${

@@ -3,26 +3,29 @@ import { Zap, Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin, Arrow
 
 export const FooterPremium: React.FC = () => {
   return (
-    <footer className="w-full bg-[#0B1F3A] text-white">
+    <footer className="w-full bg-[#07182d] text-white border-t border-[#132e53]">
       
       {/* Newsletter CTA Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 border-b border-[#1a3351]">
         <div className="grid md:grid-cols-2 gap-8 items-center">
           <div>
-            <h3 className="text-2xl sm:text-3xl font-black mb-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#FFD21F]/10 border border-[#FFD21F]/30 text-[#FFD21F] text-[10px] font-black uppercase tracking-[0.18em] mb-4">
               Stay Updated
+            </div>
+            <h3 className="text-2xl sm:text-3xl font-black mb-3 text-white">
+              Premium drops, offers & insider updates
             </h3>
-            <p className="text-[#B0BAC9] mb-6">
-              Get exclusive offers, new product launches and helpful digital tips delivered to your inbox.
+            <p className="text-slate-300 mb-6">
+              Get exclusive offers, launch alerts, and fresh digital deals delivered to your inbox.
             </p>
           </div>
           <div className="flex gap-2">
             <input
               type="email"
               placeholder="Enter your email"
-              className="flex-1 px-4 py-3 rounded-lg bg-white text-[#0B1F3A] outline-none font-medium"
+              className="flex-1 px-4 py-3 rounded-xl bg-[#0B1F3A] border border-white/10 text-white outline-none font-medium placeholder:text-slate-400"
             />
-            <button className="px-6 py-3 bg-[#FFD21F] hover:bg-[#FFC400] text-[#0B1F3A] font-bold rounded-lg transition-colors flex items-center gap-2 whitespace-nowrap">
+            <button className="px-6 py-3 bg-[#FFD21F] hover:bg-[#FFC400] text-[#0B1F3A] font-black rounded-xl transition-colors flex items-center gap-2 whitespace-nowrap shadow-lg shadow-[#FFD21F]/20">
               <span className="hidden sm:inline">Subscribe</span>
               <ArrowRight className="w-4 h-4" />
             </button>
@@ -151,7 +154,7 @@ export const FooterPremium: React.FC = () => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-[#B0BAC9]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-300 border-t border-[#1a3351]">
         <div>
           © 2024 PlayBeat Digital. All rights reserved.
         </div>
