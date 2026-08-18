@@ -13,20 +13,20 @@ export const FeaturedCategoriesPremium: React.FC = () => {
   ];
 
   return (
-    <section className="w-full py-16 sm:py-24 bg-white">
+    <section className="w-full py-16 sm:py-24 bg-[#0B1F3A]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         
         {/* Section Header */}
         <div className="mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#FFD21F]/10 border border-[#FFD21F]/30 rounded-full mb-4">
-            <span className="text-xs font-bold text-[#0B1F3A] uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#FFD21F]/15 border border-[#FFD21F]/30 rounded-full mb-4">
+            <span className="text-xs font-bold text-[#FFD21F] uppercase tracking-wider">
               explore
             </span>
           </div>
-          <h2 className="text-4xl sm:text-5xl font-black text-[#0B1F3A] mb-4">
+          <h2 className="text-4xl sm:text-5xl font-black text-white mb-4">
             Featured <span className="text-[#FFD21F]">Categories</span>
           </h2>
-          <p className="text-lg text-[#6B7280] max-w-2xl">
+          <p className="text-lg text-slate-300 max-w-2xl">
             Browse our comprehensive collection of digital products and services, all organized for easy discovery.
           </p>
         </div>
@@ -42,7 +42,7 @@ export const FeaturedCategoriesPremium: React.FC = () => {
                   setActiveView('storefront');
                   setSelectedCategory(category.id);
                 }}
-                className="group p-6 bg-white rounded-lg border-2 border-[#E2E6EB] hover:border-[#FFD21F] shadow-sm hover:shadow-lg transition-all duration-300 text-left"
+                className="group p-6 bg-[#102749] rounded-lg border-2 border-white/10 hover:border-[#FFD21F] shadow-sm hover:shadow-lg hover:shadow-[#FFD21F]/20 transition-all duration-300 text-left"
               >
                 
                 {/* Icon Circle */}
@@ -51,10 +51,10 @@ export const FeaturedCategoriesPremium: React.FC = () => {
                 </div>
 
                 {/* Title & Desc */}
-                <h3 className="font-bold text-[#0B1F3A] text-lg mb-1 group-hover:text-[#FFD21F] transition-colors">
+                <h3 className="font-bold text-white text-lg mb-1 group-hover:text-[#FFD21F] transition-colors">
                   {category.label}
                 </h3>
-                <p className="text-sm text-[#6B7280] mb-4">
+                <p className="text-sm text-slate-300 mb-4">
                   {category.desc}
                 </p>
 

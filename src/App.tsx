@@ -98,14 +98,14 @@ export function App() {
   }, [products, selectedCategory, selectedType, searchQuery, sortBy]);
 
   return (
-    <div className="min-h-screen flex flex-col transition-colors duration-300">
+    <div className="min-h-screen flex flex-col transition-colors duration-300 bg-[#07182d] text-white">
       {/* Top Main Navigation */}
       <NavbarPremium />
 
       {/* Main Viewport Router */}
-      <main className="flex-1 w-full bg-white">
+      <main className="flex-1 w-full bg-[#07182d]">
         {activeView === 'storefront' && (
-          <div>
+          <div className="bg-[#07182d]">
             {/* Premium Hero Section */}
             {sectionConfig.heroSpotlight && <HeroSectionPremium />}
 

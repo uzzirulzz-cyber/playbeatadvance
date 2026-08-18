@@ -411,17 +411,20 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   };
 
   const adminLogin = (email: string, password: string) => {
-    const correctEmail = import.meta.env.REACT_APP_ADMIN_EMAIL;
-    const correctPassword = import.meta.env.REACT_APP_ADMIN_PASSWORD;
-    
+    const normalizedEmail = (email || '').trim().toLowerCase();
+    const normalizedPassword = (password || '').trim();
+
+    const correctEmail = import.meta.env.VITE_ADMIN_EMAIL ?? import.meta.env.REACT_APP_ADMIN_EMAIL;
+    const correctPassword = import.meta.env.VITE_ADMIN_PASSWORD ?? import.meta.env.REACT_APP_ADMIN_PASSWORD;
+
     if (!correctEmail || !correctPassword) {
       return { success: false, message: 'Admin authentication not configured. Contact system administrator.' };
     }
-    
-    if (email === correctEmail && password === correctPassword) {
+
+    if (normalizedEmail === String(correctEmail).trim().toLowerCase() && normalizedPassword === String(correctPassword).trim()) {
       setIsAdminAuthenticated(true);
       localStorage.setItem('playbeat_admin_auth', 'true');
-      localStorage.setItem('playbeat_admin_email', email);
+      localStorage.setItem('playbeat_admin_email', normalizedEmail);
       return { success: true, message: 'Authentication successful! Welcome to PlayBeat Admin.' };
     }
     return { success: false, message: 'Invalid email or password. Please try again.' };

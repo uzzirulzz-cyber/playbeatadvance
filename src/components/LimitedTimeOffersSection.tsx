@@ -63,7 +63,7 @@ export const LimitedTimeOffersSection: React.FC = () => {
   };
 
   return (
-    <section className="py-12 px-4 sm:px-6 max-w-7xl mx-auto">
+    <section className="py-12 px-4 sm:px-6 max-w-7xl mx-auto bg-[#07182d]">
       {/* Section Header */}
       <div className="flex items-center justify-between mb-8">
         <div className="space-y-2">
@@ -71,11 +71,11 @@ export const LimitedTimeOffersSection: React.FC = () => {
             <div className="p-2 rounded-lg bg-gradient-to-br from-red-500 to-red-600 shadow-lg">
               <Clock className="w-6 h-6 text-white" />
             </div>
-            <h2 className="text-3xl font-black text-[#0B1F3A] tracking-tight">
+            <h2 className="text-3xl font-black text-white tracking-tight">
               Limited-Time Offers
             </h2>
           </div>
-          <p className="text-sm text-[#6B7280] ml-11">
+          <p className="text-sm text-slate-300 ml-11">
             Flash deals ending soon — grab them before they're gone
           </p>
         </div>
@@ -153,10 +153,10 @@ export const LimitedTimeOffersSection: React.FC = () => {
       </div>
 
       {/* Info Banner */}
-      <div className="mt-8 p-4 rounded-2xl bg-gradient-to-r from-red-50 to-orange-50 border border-red-200 flex items-start gap-3">
-        <Clock className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
-        <p className="text-xs text-[#6B7280]">
-          <span className="font-bold text-[#0B1F3A]">Flash Sales:</span> These limited-time offers are available only while stock lasts. Prices are subject to change once the countdown expires.
+      <div className="mt-8 p-4 rounded-2xl bg-[#0B1F3A]/80 border border-red-400/20 flex items-start gap-3">
+        <Clock className="w-5 h-5 text-red-400 shrink-0 mt-0.5" />
+        <p className="text-xs text-slate-200">
+          <span className="font-bold text-white">Flash Sales:</span> These limited-time offers are available only while stock lasts. Prices are subject to change once the countdown expires.
         </p>
       </div>
     </section>

@@ -14,7 +14,7 @@ export const BestSellersSection: React.FC = () => {
   }, [products]);
 
   return (
-    <section className="py-12 px-4 sm:px-6 max-w-7xl mx-auto">
+    <section className="py-12 px-4 sm:px-6 max-w-7xl mx-auto bg-[#07182d]">
       {/* Section Header */}
       <div className="flex items-center justify-between mb-8">
         <div className="space-y-2">
@@ -22,11 +22,11 @@ export const BestSellersSection: React.FC = () => {
             <div className="p-2 rounded-lg bg-gradient-to-br from-[#FFD21F] to-[#FFC400] shadow-lg">
               <Crown className="w-6 h-6 text-[#0B1F3A]" />
             </div>
-            <h2 className="text-3xl font-black text-[#0B1F3A] tracking-tight">
+            <h2 className="text-3xl font-black text-white tracking-tight">
               Best Sellers
             </h2>
           </div>
-          <p className="text-sm text-[#6B7280] ml-11">
+          <p className="text-sm text-slate-300 ml-11">
             Voted by thousands of satisfied customers
           </p>
         </div>
@@ -61,10 +61,10 @@ export const BestSellersSection: React.FC = () => {
       </div>
 
       {/* Info Banner */}
-      <div className="mt-8 p-4 rounded-2xl bg-gradient-to-r from-[#0B1F3A]/5 to-[#FFD21F]/10 border border-[#E2E6EB] flex items-start gap-3">
+      <div className="mt-8 p-4 rounded-2xl bg-[#0B1F3A]/80 border border-[#FFD21F]/20 flex items-start gap-3">
         <Crown className="w-5 h-5 text-[#FFD21F] fill-[#FFD21F] shrink-0 mt-0.5" />
-        <p className="text-xs text-[#6B7280]">
-          <span className="font-bold text-[#0B1F3A]">Most Popular:</span> Our best-selling products are tried and tested by thousands of customers. Secure your purchase with our 30-day satisfaction guarantee.
+        <p className="text-xs text-slate-200">
+          <span className="font-bold text-white">Most Popular:</span> Our best-selling products are tried and tested by thousands of customers. Secure your purchase with our 30-day satisfaction guarantee.
         </p>
       </div>
     </section>

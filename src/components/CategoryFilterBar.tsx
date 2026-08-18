@@ -69,7 +69,7 @@ export const CategoryFilterBar: React.FC = () => {
   const hasActiveFilters = selectedCategory !== 'all' || selectedType !== 'ALL' || searchQuery.trim() !== '';
 
   return (
-    <div className="w-full space-y-4 pt-6 pb-2">
+    <div className="w-full space-y-4 pt-6 pb-2 bg-[#07182d]">
       {/* Category Pill Slider */}
       <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none scroll-smooth">
         {categories.map(cat => {

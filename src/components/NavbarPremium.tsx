@@ -88,18 +88,18 @@ export const NavbarPremium: React.FC = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-white border-b-2 border-[#E2E6EB] shadow-sm transition-all duration-300">
+    <header className="sticky top-0 z-40 w-full bg-[#07182d] border-b-2 border-[#0f2342] shadow-sm transition-all duration-300">
       
       {/* Top announcement bar */}
-      <div className="w-full bg-[#F4F6F8] border-b border-[#E2E6EB] px-4 py-2 text-xs">
+      <div className="w-full bg-[#0B1F3A] border-b border-[#132e53] px-4 py-2 text-xs">
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-2">
           <div className="flex items-center gap-2">
             <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="text-[#263241] font-medium">
-              Welcome to <strong>PlayBeat Digital</strong> - Premium Digital Marketplace
+            <span className="text-slate-200 font-medium">
+              Welcome to <strong className="text-white">PlayBeat Digital</strong> - Premium Digital Marketplace
             </span>
           </div>
-          <div className="flex items-center gap-4 text-[#6B7280]">
+          <div className="flex items-center gap-4 text-slate-300">
             <a href="tel:+923321029333" className="flex items-center gap-1.5 hover:text-[#FFD21F] transition-colors">
               <PhoneCall className="w-3.5 h-3.5" />
               <span className="hidden sm:inline font-semibold">+92 332 102 9333</span>
@@ -113,7 +113,7 @@ export const NavbarPremium: React.FC = () => {
       </div>
 
       {/* Main header */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between gap-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between gap-4 bg-[#07182d]">
         
         {/* Logo */}
         <button
@@ -357,7 +357,7 @@ export const NavbarPremium: React.FC = () => {
       </div>
 
       {/* Navigation bar - desktop */}
-      <nav className="hidden md:flex max-w-7xl mx-auto px-4 sm:px-6 py-0 border-t border-[#E2E6EB]">
+      <nav className="hidden md:flex max-w-7xl mx-auto px-4 sm:px-6 py-0 border-t border-[#132e53] bg-[#07182d]">
         {navigationLinks.map((link) => (
           <button
             key={link.category}
@@ -367,14 +367,14 @@ export const NavbarPremium: React.FC = () => {
             }}
             className={`px-4 py-3 font-semibold text-sm border-b-2 transition-colors ${
               selectedCategory === link.category
-                ? 'border-[#FFD21F] text-[#0B1F3A]'
-                : 'border-transparent text-[#6B7280] hover:text-[#0B1F3A]'
+                ? 'border-[#FFD21F] text-[#FFD21F]'
+                : 'border-transparent text-slate-300 hover:text-white'
             }`}
           >
             {link.label}
           </button>
         ))}
-        <div className="ml-auto flex items-center gap-1.5 py-3 text-xs text-[#6B7280]">
+        <div className="ml-auto flex items-center gap-1.5 py-3 text-xs text-slate-300">
           <Lock className="w-3.5 h-3.5" />
           <span>256-Bit Secure</span>
         </div>
@@ -382,8 +382,8 @@ export const NavbarPremium: React.FC = () => {
 
       {/* Mobile menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden border-t border-[#E2E6EB] bg-[#F4F6F8] p-4 space-y-2">
-          <div className="px-3 py-1.5 text-xs font-bold text-[#6B7280] uppercase">Categories</div>
+        <div className="md:hidden border-t border-[#132e53] bg-[#07182d] p-4 space-y-2">
+          <div className="px-3 py-1.5 text-xs font-bold text-slate-300 uppercase">Categories</div>
           {navigationLinks.map((link) => (
             <button
               key={link.category}
@@ -392,7 +392,7 @@ export const NavbarPremium: React.FC = () => {
                 setSelectedCategory(link.category);
                 setIsMobileMenuOpen(false);
               }}
-              className="w-full px-3 py-2 text-left text-sm font-medium text-[#263241] hover:bg-white rounded-lg transition-colors"
+              className="w-full px-3 py-2 text-left text-sm font-medium text-slate-200 hover:bg-[#0B1F3A] rounded-lg transition-colors"
             >
               {link.label}
             </button>
