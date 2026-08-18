@@ -88,10 +88,10 @@ export const NavbarPremium: React.FC = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-[#07182d] border-b-2 border-[#0f2342] shadow-sm transition-all duration-300">
+    <header className="sticky top-0 z-40 w-full bg-[#f7f4ee]/95 backdrop-blur-sm border-b border-[#e7dfd0] shadow-[0_6px_20px_rgba(16,35,61,0.08)] transition-all duration-300">
       
       {/* Top announcement bar */}
-      <div className="w-full bg-[#0B1F3A] border-b border-[#132e53] px-4 py-2 text-xs">
+      <div className="w-full bg-[#10233d] border-b border-[#183152] px-4 py-2 text-xs">
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-2">
           <div className="flex items-center gap-2">
             <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
@@ -100,11 +100,11 @@ export const NavbarPremium: React.FC = () => {
             </span>
           </div>
           <div className="flex items-center gap-4 text-slate-300">
-            <a href="tel:+923321029333" className="flex items-center gap-1.5 hover:text-[#FFD21F] transition-colors">
+            <a href="tel:+923321029333" className="flex items-center gap-1.5 hover:text-[#d7a53a] transition-colors">
               <PhoneCall className="w-3.5 h-3.5" />
               <span className="hidden sm:inline font-semibold">+92 332 102 9333</span>
             </a>
-            <button onClick={() => setIsSupportOpen(true)} className="flex items-center gap-1 hover:text-[#FFD21F] transition-colors">
+            <button onClick={() => setIsSupportOpen(true)} className="flex items-center gap-1 hover:text-[#d7a53a] transition-colors">
               <Headphones className="w-3.5 h-3.5" />
               <span className="hidden sm:inline">24/7 Support</span>
             </button>
@@ -113,7 +113,7 @@ export const NavbarPremium: React.FC = () => {
       </div>
 
       {/* Main header */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between gap-4 bg-[#07182d]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between gap-4 bg-transparent">
         
         {/* Logo */}
         <button
@@ -124,14 +124,14 @@ export const NavbarPremium: React.FC = () => {
           }}
           className="flex items-center gap-3 hover:opacity-80 transition-opacity"
         >
-          <div className="w-10 h-10 rounded-lg bg-[#0B1F3A] flex items-center justify-center shadow-md hover:shadow-lg transition-all">
-            <Zap className="w-6 h-6 text-[#FFD21F]" />
+          <div className="w-10 h-10 rounded-xl bg-[#10233d] flex items-center justify-center shadow-[0_10px_18px_rgba(16,35,61,0.12)] hover:shadow-[0_12px_22px_rgba(16,35,61,0.18)] transition-all">
+            <Zap className="w-6 h-6 text-[#d7a53a]" />
           </div>
           <div className="hidden sm:block text-left">
-            <div className="font-black text-[#0B1F3A] text-lg leading-none">
+            <div className="font-black text-[#10233d] text-lg leading-none">
               PLAYBEAT
             </div>
-            <div className="text-[10px] text-[#6B7280] font-semibold tracking-wider">
+            <div className="text-[10px] text-[#58687c] font-semibold tracking-[0.22em]">
               DIGITAL
             </div>
           </div>
@@ -139,13 +139,13 @@ export const NavbarPremium: React.FC = () => {
 
         {/* Search bar - hidden on mobile */}
         <div ref={searchRef} className="relative flex-1 max-w-2xl hidden md:block">
-          <div className="flex items-stretch rounded-lg overflow-hidden border-2 border-[#0B1F3A] bg-[#F4F6F8] shadow-sm hover:shadow-md transition-shadow">
+          <div className="flex items-stretch rounded-xl overflow-hidden border border-[#dfe4eb] bg-white shadow-[0_10px_25px_rgba(16,35,61,0.06)] hover:shadow-[0_12px_28px_rgba(16,35,61,0.08)] transition-shadow">
             
             {/* Category select */}
             <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
-              className="bg-transparent text-xs font-semibold text-[#0B1F3A] px-3 py-2 border-r border-[#E2E6EB] outline-none cursor-pointer"
+              className="bg-[#f8f6f2] text-xs font-semibold text-[#10233d] px-3 py-2 border-r border-[#e7dfd0] outline-none cursor-pointer"
             >
               <option value="all">All Categories</option>
               {categories.map(c => (
@@ -165,7 +165,7 @@ export const NavbarPremium: React.FC = () => {
                   setIsSearchOpen(true);
                 }}
                 onFocus={() => setIsSearchOpen(true)}
-                className="w-full h-10 px-3 text-sm text-[#263241] placeholder-[#9CA3AF] bg-transparent outline-none"
+                className="w-full h-10 px-3 text-sm text-[#10233d] placeholder-[#7a8798] bg-transparent outline-none"
               />
               {searchQuery && (
                 <button
@@ -181,7 +181,7 @@ export const NavbarPremium: React.FC = () => {
             </div>
 
             {/* Search button */}
-            <button className="px-4 bg-[#FFD21F] hover:bg-[#FFC400] text-[#0B1F3A] font-bold text-xs transition-colors flex items-center gap-2">
+            <button className="px-4 bg-[#d7a53a] hover:bg-[#c9952a] text-[#10233d] font-bold text-xs transition-colors flex items-center gap-2">
               <Search className="w-4 h-4" />
               <span className="hidden sm:inline">Search</span>
             </button>

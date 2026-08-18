@@ -13,20 +13,21 @@ export const FeaturedCategoriesPremium: React.FC = () => {
   ];
 
   return (
-    <section className="w-full py-16 sm:py-24 bg-[#0B1F3A]">
+    <section className="w-full py-20 sm:py-24 bg-transparent">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         
         {/* Section Header */}
-        <div className="mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#FFD21F]/15 border border-[#FFD21F]/30 rounded-full mb-4">
-            <span className="text-xs font-bold text-[#FFD21F] uppercase tracking-wider">
-              explore
+        <div className="mb-10">
+          <div className="mb-4 flex items-center gap-3">
+            <span className="text-[11px] font-black uppercase tracking-[0.22em] text-[#58687c]">
+              Explore
             </span>
+            <span className="h-px flex-1 bg-[#dfe4eb]" />
           </div>
-          <h2 className="text-4xl sm:text-5xl font-black text-white mb-4">
-            Featured <span className="text-[#FFD21F]">Categories</span>
+          <h2 className="text-3xl sm:text-4xl font-black text-[#10233d] leading-none tracking-[-0.05em] mb-3">
+            Featured <span className="text-[#d7a53a]">Categories</span>
           </h2>
-          <p className="text-lg text-slate-300 max-w-2xl">
+          <p className="text-base text-[#58687c] max-w-2xl">
             Browse our comprehensive collection of digital products and services, all organized for easy discovery.
           </p>
         </div>

@@ -14,19 +14,22 @@ export const BestSellersSection: React.FC = () => {
   }, [products]);
 
   return (
-    <section className="py-12 px-4 sm:px-6 max-w-7xl mx-auto bg-[#07182d]">
+    <section className="py-20 px-4 sm:px-6 max-w-7xl mx-auto bg-transparent">
       {/* Section Header */}
-      <div className="flex items-center justify-between mb-8">
-        <div className="space-y-2">
+      <div className="flex items-end justify-between gap-4 mb-10">
+        <div className="space-y-3">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-gradient-to-br from-[#FFD21F] to-[#FFC400] shadow-lg">
-              <Crown className="w-6 h-6 text-[#0B1F3A]" />
+            <div className="p-2.5 rounded-xl bg-[#fff7e6] border border-[#e4d3a7] shadow-[0_12px_24px_rgba(16,35,61,0.04)]">
+              <Crown className="w-5 h-5 text-[#d7a53a]" />
             </div>
-            <h2 className="text-3xl font-black text-white tracking-tight">
-              Best Sellers
-            </h2>
+            <span className="text-[11px] font-black uppercase tracking-[0.22em] text-[#58687c]">
+              Popular
+            </span>
           </div>
-          <p className="text-sm text-slate-300 ml-11">
+          <h2 className="text-3xl sm:text-4xl font-black text-[#10233d] tracking-[-0.05em] leading-none">
+            Best Sellers
+          </h2>
+          <p className="text-sm text-[#58687c] max-w-xl">
             Voted by thousands of satisfied customers
           </p>
         </div>

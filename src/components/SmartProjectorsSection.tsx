@@ -55,39 +55,42 @@ export const SmartProjectorsSection: React.FC = () => {
       </div>
 
       {/* Premium Header with Featured Badge */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 mb-8">
-        <div className="rounded-3xl bg-gradient-to-r from-[#0B1F3A]/95 via-slate-900/95 to-[#0B1F3A]/95 backdrop-blur-xl border border-[#FFD21F]/40 p-6 sm:p-8 shadow-2xl relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 mb-10">
+        <div className="rounded-[30px] bg-[linear-gradient(135deg,#fffefc_0%,#f3f6fb_100%)] border border-[#e7dfd0] p-6 sm:p-8 shadow-[0_18px_40px_rgba(16,35,61,0.08)] relative overflow-hidden">
           {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#FFD21F]/5 via-transparent to-blue-600/5 pointer-events-none" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(215,165,58,0.18),_transparent_45%)] pointer-events-none" />
           
-          <div className="relative z-10 space-y-4">
+          <div className="relative z-10 space-y-5">
             {/* Featured Badge Row */}
             <div className="flex flex-wrap items-center gap-2">
-              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-[#FFD21F] to-[#FFC400] text-[#0B1F3A] text-xs font-black uppercase tracking-wider shadow-lg">
-                <Sparkles className="w-3.5 h-3.5" />
-                🔥 FEATURED AT TOP
+              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#fff9ec] border border-[#ead79a] text-[#10233d] text-[10px] font-black uppercase tracking-[0.18em] shadow-[0_8px_18px_rgba(215,165,58,0.08)]">
+                <Sparkles className="w-3.5 h-3.5 text-[#d7a53a]" />
+                Featured at top
               </span>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-xs font-bold">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#eafaf1] text-[#1e7a4d] border border-[#b8e5c9] text-[10px] font-bold">
                 <Truck className="w-3.5 h-3.5" />
                 Free Delivery Pakistan
               </span>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/40 text-xs font-bold">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#edf3ff] text-[#215bc7] border border-[#cfe0ff] text-[10px] font-bold">
                 <ShieldCheck className="w-3.5 h-3.5" />
                 1-Year Warranty
               </span>
             </div>
 
             {/* Main Headline */}
-            <div className="space-y-2">
+            <div className="space-y-3">
               <div className="flex items-center gap-3">
-                <div className="p-2.5 rounded-lg bg-gradient-to-br from-[#FFD21F] to-[#FFC400] shadow-lg">
-                  <Projector className="w-6 h-6 text-[#0B1F3A]" />
+                <div className="p-2.5 rounded-xl bg-[#fff3cf] border border-[#ead79a] shadow-[0_10px_20px_rgba(215,165,58,0.12)]">
+                  <Projector className="w-5 h-5 text-[#d7a53a]" />
                 </div>
-                <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
-                  Smart Android & 4K Cinema Projectors
-                </h2>
+                <span className="text-[11px] font-black uppercase tracking-[0.22em] text-[#58687c]">
+                  Home cinema
+                </span>
               </div>
-              <p className="text-sm text-slate-300 max-w-3xl leading-relaxed ml-11">
+              <h2 className="text-3xl sm:text-4xl font-black text-[#10233d] tracking-[-0.06em] leading-none">
+                Smart Android & 4K Cinema Projectors
+              </h2>
+              <p className="text-sm text-[#58687c] max-w-3xl leading-relaxed">
                 Transform any space into a 200-inch premium cinema theater. Magcubic 180° rotatable gimbals, native 1080P 4K-decoded engines, WiFi 6, and ultra-bright battery-powered models built for Pakistan.
               </p>
             </div>
