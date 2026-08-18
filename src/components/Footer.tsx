@@ -344,24 +344,6 @@ export const Footer: React.FC = () => {
             )}
           </form>
 
-          {/* Secure Checkout / Lemon Squeezy Info */}
-          <div className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
-            <div className="flex items-center gap-2 text-white font-extrabold text-xs">
-              <ShieldCheck className="w-4 h-4 text-emerald-400" />
-              <span>Secure Checkout</span>
-            </div>
-            <p className="text-[11px] text-slate-400 leading-relaxed">
-              All payments processed by <strong className="text-slate-200">Lemon Squeezy</strong>. <strong className="text-emerald-400">PCI-DSS compliant.</strong>
-            </p>
-            <div className="flex flex-wrap items-center gap-1.5 pt-1">
-              <span className="px-2 py-0.5 rounded bg-slate-800 text-[10px] font-bold text-amber-300 border border-slate-700">JazzCash</span>
-              <span className="px-2 py-0.5 rounded bg-slate-800 text-[10px] font-bold text-emerald-300 border border-slate-700">EasyPaisa</span>
-              <span className="px-2 py-0.5 rounded bg-slate-800 text-[10px] font-bold text-indigo-300 border border-slate-700">Visa / MC</span>
-              <span className="px-2 py-0.5 rounded bg-slate-800 text-[10px] font-bold text-purple-300 border border-slate-700">Lemon Squeezy</span>
-              <span className="px-2 py-0.5 rounded bg-slate-800 text-[10px] font-bold text-teal-300 border border-slate-700">USDT</span>
-            </div>
-          </div>
-
         </div>
 
       </div>
