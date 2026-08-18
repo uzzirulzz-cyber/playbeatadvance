@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Gamepad2, Code, Gift, Monitor, Cloud, TrendingUp, Zap } from 'lucide-react';
+import { ArrowRight, Gamepad2, Code, Gift, Monitor } from 'lucide-react';
 import { useStore } from '../store/useStore';
 
 export const FeaturedCategoriesPremium: React.FC = () => {
@@ -10,10 +10,6 @@ export const FeaturedCategoriesPremium: React.FC = () => {
     { id: 'software-licenses', label: 'Software & Licenses', icon: Code, desc: 'Professional & creative software', color: 'bg-purple-50 border-purple-200 text-purple-600' },
     { id: 'gift-cards', label: 'Gift Cards & Vouchers', icon: Gift, desc: 'Digital & retail gift cards', color: 'bg-rose-50 border-rose-200 text-rose-600' },
     { id: 'streaming', label: 'Streaming Services', icon: Monitor, desc: 'Netflix, Prime, Disney+ & more', color: 'bg-red-50 border-red-200 text-red-600' },
-    { id: 'cloud-services', label: 'Cloud Services', icon: Cloud, desc: 'Storage, hosting & databases', color: 'bg-cyan-50 border-cyan-200 text-cyan-600' },
-    { id: 'web-hosting', label: 'Web Hosting', icon: TrendingUp, desc: 'Domains, hosting & security', color: 'bg-green-50 border-green-200 text-green-600' },
-    { id: 'marketing', label: 'Digital Marketing', icon: Zap, desc: 'SEO tools & marketing platforms', color: 'bg-orange-50 border-orange-200 text-orange-600' },
-    { id: 'smart-projectors', label: 'Premium Hardware', icon: Monitor, desc: 'Projectors, devices & more', color: 'bg-amber-50 border-amber-200 text-amber-600' },
   ];
 
   return (
