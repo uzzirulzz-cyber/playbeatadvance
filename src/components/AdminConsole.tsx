@@ -3,8 +3,10 @@ import { useStore } from '../store/useStore';
 import { AdminSidebar, AdminTab } from './admin/AdminSidebar';
 import { AdminHeader } from './admin/AdminHeader';
 import { DashboardView } from './admin/views/DashboardView';
+import { WebsiteBuilderView } from './admin/views/WebsiteBuilderView';
 import { AnalyticsView } from './admin/views/AnalyticsView';
 import { ProductsView } from './admin/views/ProductsView';
+import { InventoryView } from './admin/views/InventoryView';
 import { OrdersView } from './admin/views/OrdersView';
 import { WooCommerceView } from './admin/views/WooCommerceView';
 import { SubscriptionsView } from './admin/views/SubscriptionsView';
@@ -15,6 +17,7 @@ import { IptvView } from './admin/views/IptvView';
 import { FinanceView } from './admin/views/FinanceView';
 import { PaymentGatewaysView } from './admin/views/PaymentGatewaysView';
 import { PaymentProofView } from './admin/views/PaymentProofView';
+import { AuditLogsView } from './admin/views/AuditLogsView';
 import { SocialMediaView } from './admin/views/SocialMediaView';
 import { TikTokLeadsView } from './admin/views/TikTokLeadsView';
 import { EmailView } from './admin/views/EmailView';
@@ -42,7 +45,7 @@ export const AdminConsole: React.FC = () => {
 
   const [activeTab, setActiveTab] = useState<AdminTab>('dashboard');
   const [passwordInput, setPasswordInput] = useState('');
-  const [usernameInput, setUsernameInput] = useState('');
+  const [usernameInput, setUsernameInput] = useState('admin@playbeat.digital');
   const [showPassword, setShowPassword] = useState(false);
   const [loginError, setLoginError] = useState('');
   const [adminSearch, setAdminSearch] = useState('');
@@ -51,13 +54,17 @@ export const AdminConsole: React.FC = () => {
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     setLoginError('');
-    const res = adminLogin(usernameInput, passwordInput);
+    const res = adminLogin(passwordInput);
     if (!res.success) {
       setLoginError(res.message);
     }
   };
 
-  // Removed handleAutoFill() - credentials should never be hardcoded or auto-filled
+  const handleAutoFill = () => {
+    setPasswordInput('playbeat1122');
+    setUsernameInput('admin@playbeat.digital');
+    setLoginError('');
+  };
 
   const handleResetAll = () => {
     setAdminSearch('');
@@ -70,19 +77,19 @@ export const AdminConsole: React.FC = () => {
   if (!isAdminAuthenticated) {
     return (
       <div className="min-h-[85vh] flex items-center justify-center p-4">
-        <div className="w-full max-w-md bg-[#0d1322] border border-slate-800 rounded-3xl p-8 shadow-2xl space-y-6 relative overflow-hidden">
+        <div className="w-full max-w-md bg-[#0b1120] border border-slate-800 rounded-3xl p-8 shadow-2xl space-y-6 relative overflow-hidden">
           
           {/* Top glow */}
-          <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-64 h-48 bg-purple-600/20 blur-3xl pointer-events-none" />
+          <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-64 h-48 bg-yellow-500/10 blur-3xl pointer-events-none" />
 
           {/* Header */}
           <div className="text-center space-y-2 relative">
-            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 mx-auto flex items-center justify-center shadow-lg shadow-purple-600/30">
-              <Zap className="w-8 h-8 text-white fill-white" />
+            <div className="w-14 h-14 rounded-2xl bg-[#fcb800] text-slate-950 font-black mx-auto flex items-center justify-center shadow-lg shadow-yellow-500/20 text-2xl">
+              PB
             </div>
             <h1 className="text-2xl font-black tracking-tight text-white pt-2">
-              <span>play</span><span className="text-[#a855f7]">beat</span>
-              <span className="text-xs text-slate-400 font-mono block mt-0.5">playbeat.digital/adminpanel</span>
+              PlayBeat <span className="text-[#fcb800]">Digital</span>
+              <span className="text-xs text-slate-400 font-mono block mt-0.5">playbeat.digital/admin</span>
             </h1>
             <p className="text-xs text-slate-400">
               Admin Panel • Master Authorization Required
@@ -105,22 +112,29 @@ export const AdminConsole: React.FC = () => {
                 required
                 value={usernameInput}
                 onChange={(e) => setUsernameInput(e.target.value)}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-purple-500 transition-colors font-mono"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-[#fcb800] transition-colors font-mono"
               />
             </div>
 
             <div>
               <div className="flex items-center justify-between mb-1.5">
                 <label className="block text-slate-300 font-bold">Master Password</label>
+                <button
+                  type="button"
+                  onClick={handleAutoFill}
+                  className="text-[11px] text-[#fcb800] hover:underline font-semibold cursor-pointer"
+                >
+                  Autofill demo (playbeat1122)
+                </button>
               </div>
               <div className="relative">
                 <input
                   type={showPassword ? 'text' : 'password'}
                   required
-                  placeholder="Enter master password"
+                  placeholder="Enter playbeat1122"
                   value={passwordInput}
                   onChange={(e) => setPasswordInput(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-purple-500 transition-colors font-mono"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-[#fcb800] transition-colors font-mono"
                 />
                 <button
                   type="button"
@@ -134,17 +148,24 @@ export const AdminConsole: React.FC = () => {
 
             <button
               type="submit"
-              className="w-full py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold transition-all shadow-lg shadow-purple-600/30 cursor-pointer flex items-center justify-center gap-2"
+              className="w-full py-3 rounded-xl bg-[#fcb800] hover:bg-[#e5a700] text-slate-950 font-black transition-all shadow-lg shadow-yellow-500/20 cursor-pointer flex items-center justify-center gap-2"
             >
               <Lock className="w-4 h-4" />
               <span>Log in to Admin Panel</span>
             </button>
           </form>
 
-          {/* Security notice */}
-          <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800 text-[11px] text-slate-400 flex items-center gap-2">
-            <ShieldCheck className="w-4 h-4 shrink-0 text-emerald-400" />
-            <span>Credentials must be entered securely. Never share or hardcode passwords.</span>
+          {/* Quick autofill helper */}
+          <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800 text-[11px] text-slate-400 flex items-center justify-between">
+            <div>
+              Password: <code className="text-yellow-400 font-mono font-bold">playbeat1122</code>
+            </div>
+            <button
+              onClick={handleAutoFill}
+              className="px-2.5 py-1 rounded-lg bg-yellow-400/10 text-[#fcb800] border border-yellow-400/20 font-bold hover:bg-yellow-400/20 transition-colors cursor-pointer"
+            >
+              Fill Credentials
+            </button>
           </div>
 
           <div className="text-center pt-2">
@@ -160,13 +181,13 @@ export const AdminConsole: React.FC = () => {
     );
   }
 
-  // Authenticated Admin View Matching Screenshot
+  // Authenticated Admin View
   return (
     <div className="min-h-screen bg-[#070b14] text-slate-100 flex flex-col">
       {/* Toast */}
       {resetToast && (
-        <div className="fixed bottom-6 right-6 z-50 bg-purple-900 border border-purple-500 text-white px-4 py-3 rounded-2xl shadow-2xl flex items-center gap-3 text-xs font-bold animate-in fade-in">
-          <RotateCcw className="w-4 h-4 text-purple-300 animate-spin" />
+        <div className="fixed bottom-6 right-6 z-50 bg-[#fcb800] text-slate-950 px-4 py-3 rounded-2xl shadow-2xl flex items-center gap-3 text-xs font-black animate-in fade-in">
+          <RotateCcw className="w-4 h-4 animate-spin" />
           <span>Filters reset to default Dashboard view.</span>
         </div>
       )}
@@ -190,10 +211,12 @@ export const AdminConsole: React.FC = () => {
           />
 
           {/* View Container */}
-          <main className="flex-1 p-6 overflow-y-auto max-h-[calc(100vh-65px)] bg-[#090e1a]">
+          <main className="flex-1 p-6 overflow-y-auto max-h-[calc(100vh-65px)] bg-[#070b14]">
             {activeTab === 'dashboard' && <DashboardView />}
+            {activeTab === 'builder' && <WebsiteBuilderView />}
             {activeTab === 'analytics' && <AnalyticsView />}
             {activeTab === 'products' && <ProductsView />}
+            {activeTab === 'inventory' && <InventoryView />}
             {activeTab === 'orders' && <OrdersView />}
             {activeTab === 'woocommerce' && <WooCommerceView />}
             {activeTab === 'subscriptions' && <SubscriptionsView />}
@@ -204,6 +227,7 @@ export const AdminConsole: React.FC = () => {
             {activeTab === 'finance' && <FinanceView />}
             {activeTab === 'gateways' && <PaymentGatewaysView />}
             {activeTab === 'proofs' && <PaymentProofView />}
+            {activeTab === 'audit' && <AuditLogsView />}
             {activeTab === 'social' && <SocialMediaView />}
             {activeTab === 'tiktok' && <TikTokLeadsView />}
             {activeTab === 'email' && <EmailView />}

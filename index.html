@@ -3,6 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      // Defensive polyfill/shim to allow writing to window.fetch if a script attempts assignment
+      (function() {
+        try {
+          var _nativeFetch = window.fetch;
+          var _currentFetch = _nativeFetch;
+          Object.defineProperty(window, 'fetch', {
+            get: function() {
+              return _currentFetch || _nativeFetch;
+            },
+            set: function(val) {
+              _currentFetch = val;
+            },
+            configurable: true,
+            enumerable: true
+          });
+        } catch (err) {
+          // If already defined or non-configurable, fallback safely
+        }
+      })();
+    </script>
     <title>PlayBeat Digital — playbeat.digital Marketplace</title>
     <meta name="description" content="PlayBeat Digital (playbeat.digital) — Premium Martfury marketplace for verified software keys, streaming passes, AI suites, and digital products." />
     <link rel="preconnect" href="https://fonts.googleapis.com">

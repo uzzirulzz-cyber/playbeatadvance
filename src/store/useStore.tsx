@@ -11,11 +11,143 @@ import {
   Currency, 
   ThemePreset, 
   ActiveView,
-  Review 
+  Review,
+  Subscription,
+  InventoryKey,
+  SupportTicket,
+  AuditLog,
+  StoreSettings,
+  ProductVariant
 } from '../types';
 import { INITIAL_PRODUCTS, INITIAL_CATEGORIES, INITIAL_COUPONS, INITIAL_NOTIFICATIONS, DEMO_USER } from '../data/initialData';
 import { generateLicenseKey, generateOrderNumber, formatCurrency, formatPKR } from '../lib/utils';
 import confetti from 'canvas-confetti';
+
+const DEFAULT_STORE_SETTINGS: StoreSettings = {
+  storeName: 'PlayBeat Digital',
+  storeEmail: 'support@playbeat.digital',
+  storePhone: '+923321029333',
+  currency: 'PKR',
+  currencyRateUSD: 280,
+  maintenanceMode: false,
+  announcementText: 'Welcome to PlayBeat Digital (playbeat.digital) — Instant Delivery on All Keys & Projectors!',
+  promoCode: 'PLAYBEAT20',
+  whatsappNumber: '+923321029333',
+  taxRatePercent: 0,
+  freeShippingThresholdPKR: 15000,
+  activeGateways: {
+    jazzcash: true,
+    easypaisa: true,
+    bankTransfer: true,
+    raast: true,
+    stripe: true,
+    card: true,
+    wallet: true
+  },
+  bankDetails: {
+    bankName: 'Meezan Bank Limited',
+    accountTitle: 'PlayBeat Digital Store',
+    accountNumber: '02890104829102',
+    iban: 'PK49MEZN0002890104829102',
+    branchCode: '0289'
+  },
+  easypaisaDetails: {
+    accountTitle: 'PlayBeat Digital Official',
+    mobileNumber: '03321029333'
+  },
+  jazzcashDetails: {
+    accountTitle: 'PlayBeat Digital Merchant',
+    mobileNumber: '03321029333'
+  },
+  raastDetails: {
+    raastId: '03321029333',
+    accountTitle: 'PlayBeat Digital Raast'
+  }
+};
+
+const INITIAL_SUBSCRIPTIONS: Subscription[] = [
+  {
+    id: 'sub-1',
+    customerEmail: 'admin@playbeat.digital',
+    customerName: 'PlayBeat Super Admin',
+    productTitle: 'IPTV 4K Ultra VIP Pass (10,000+ Channels)',
+    planName: '12-Month VIP Annual Pass',
+    billingPeriod: 'ANNUAL',
+    pricePKR: 12500,
+    status: 'ACTIVE',
+    startDate: '2026-01-15',
+    nextBillingDate: '2027-01-15',
+    autoRenew: true,
+    paymentMethod: 'card'
+  },
+  {
+    id: 'sub-2',
+    customerEmail: 'admin@playbeat.digital',
+    customerName: 'PlayBeat Super Admin',
+    productTitle: 'ChatGPT Plus & Claude 3.5 Sonnet Pro',
+    planName: '1-Month Pro Shared Access',
+    billingPeriod: 'MONTHLY',
+    pricePKR: 3500,
+    status: 'ACTIVE',
+    startDate: '2026-08-01',
+    nextBillingDate: '2026-09-01',
+    autoRenew: true,
+    paymentMethod: 'jazzcash'
+  }
+];
+
+const INITIAL_TICKETS: SupportTicket[] = [
+  {
+    id: 'tkt-1',
+    ticketNumber: 'TKT-92011',
+    customerName: 'PlayBeat Super Admin',
+    customerEmail: 'admin@playbeat.digital',
+    subject: 'Magcubic HY300 PRO Courier Tracking Confirmation',
+    category: 'ORDER_ISSUE',
+    priority: 'HIGH',
+    status: 'RESOLVED',
+    messages: [
+      {
+        id: 'm1',
+        sender: 'CUSTOMER',
+        senderName: 'PlayBeat Super Admin',
+        message: 'Hi, please provide the TCS tracking ID for my order PB-892182.',
+        timestamp: '2026-08-16T10:00:00Z'
+      },
+      {
+        id: 'm2',
+        sender: 'AGENT',
+        senderName: 'PlayBeat Support Desk',
+        message: 'Your parcel has been dispatched via TCS Express Tracking #TCS-92819283. Estimated arrival in 24-48 hours.',
+        timestamp: '2026-08-16T10:30:00Z'
+      }
+    ],
+    createdAt: '2026-08-16T10:00:00Z',
+    updatedAt: '2026-08-16T10:30:00Z'
+  }
+];
+
+const INITIAL_INVENTORY_KEYS: InventoryKey[] = [
+  { id: 'k-1', productId: 'p-win11-pro', productTitle: 'Windows 11 Pro Retail License Key', key: 'W269N-WFGWX-YVC9B-4J6C9-T83GX', status: 'AVAILABLE', addedAt: '2026-08-01' },
+  { id: 'k-2', productId: 'p-win11-pro', productTitle: 'Windows 11 Pro Retail License Key', key: 'MH37W-N47XK-V7XM9-C7227-GCQG9', status: 'AVAILABLE', addedAt: '2026-08-01' },
+  { id: 'k-3', productId: 'p-office-2024', productTitle: 'Microsoft Office 2024 Professional Plus', key: 'NMMKJ-6RK4F-KMJVX-8D9MJ-6MWKP', status: 'AVAILABLE', addedAt: '2026-08-01' },
+  { id: 'k-4', productId: 'p-chatgpt-plus', productTitle: 'ChatGPT Plus & Claude 3.5 Sonnet Pro', key: 'ACC-GPTPLUS-VAL-9281-PASS2026', status: 'AVAILABLE', addedAt: '2026-08-01' }
+];
+
+const INITIAL_AUDIT_LOGS: AuditLog[] = [
+  {
+    id: 'aud-1',
+    userId: 'admin@playbeat.digital',
+    userName: 'PlayBeat Super Admin',
+    userRole: 'SUPER_ADMIN',
+    action: 'CATALOG_SYNC',
+    targetType: 'PRODUCT',
+    targetId: 'MongoDB Atlas',
+    details: 'Synchronized 8 ZeroByte verified cinema projectors and software keys.',
+    timestamp: '2026-08-18T12:00:00Z',
+    ipAddress: '127.0.0.1'
+  }
+];
 
 interface StoreContextType {
   products: Product[];
@@ -40,9 +172,19 @@ interface StoreContextType {
   isWishlistOpen: boolean;
   isOrderLookupOpen: boolean;
   isSupportOpen: boolean;
+  isAuthModalOpen: boolean;
+  isCustomerDashboardOpen: boolean;
+  isInvoiceModalOpen: boolean;
+  activeInvoiceOrder: Order | null;
   appliedCoupon: Coupon | null;
   isAdminAuthenticated: boolean;
+  isCustomerLoggedIn: boolean;
   isMongoConnected: boolean;
+  subscriptions: Subscription[];
+  inventoryKeys: InventoryKey[];
+  supportTickets: SupportTicket[];
+  auditLogs: AuditLog[];
+  storeSettings: StoreSettings;
   
   // Format helpers
   formatCurrency: (amountPKR: number, curr?: Currency) => string;
@@ -55,7 +197,7 @@ interface StoreContextType {
   deleteProduct: (id: string) => void;
   addReview: (productId: string, review: Omit<Review, 'id' | 'createdAt' | 'helpfulCount'>) => void;
   
-  addToCart: (product: Product, quantity?: number, selectedLicense?: string) => void;
+  addToCart: (product: Product, quantity?: number, selectedVariant?: ProductVariant, selectedLicense?: string) => void;
   removeFromCart: (productId: string) => void;
   updateCartQuantity: (productId: string, quantity: number) => void;
   clearCart: () => void;
@@ -73,18 +215,24 @@ interface StoreContextType {
   
   processCheckout: (
     paymentMethod: Order['paymentMethod'], 
-    customerDetails: { name: string; email: string; phone?: string }
+    customerDetails: { name: string; email: string; phone?: string; address?: string }
   ) => Order;
-  updateOrderStatus: (orderId: string, status: 'COMPLETED' | 'PENDING' | 'REFUNDED') => void;
+  updateOrderStatus: (orderId: string, status: Order['status']) => void;
   
-  adminLogin: (email: string, password: string) => { success: boolean; message: string };
+  adminLogin: (password: string) => { success: boolean; message: string };
   adminLogout: () => void;
+  customerLogin: (email: string, name?: string) => void;
+  customerLogout: () => void;
   
   setSelectedProduct: (product: Product | null) => void;
   setIsCartOpen: (open: boolean) => void;
   setIsWishlistOpen: (open: boolean) => void;
   setIsOrderLookupOpen: (open: boolean) => void;
   setIsSupportOpen: (open: boolean) => void;
+  setIsAuthModalOpen: (open: boolean) => void;
+  setIsCustomerDashboardOpen: (open: boolean) => void;
+  setIsInvoiceModalOpen: (open: boolean) => void;
+  setActiveInvoiceOrder: (order: Order | null) => void;
   
   setActiveView: (view: ActiveView) => void;
   setActiveRole: (role: UserRole) => void;
@@ -98,154 +246,114 @@ interface StoreContextType {
   
   markNotificationRead: (id: string) => void;
   addNotification: (notification: Omit<NotificationItem, 'id' | 'createdAt' | 'read'>) => void;
+
+  // Subscriptions & Support & Inventory & Settings
+  addSubscription: (sub: Omit<Subscription, 'id'>) => void;
+  cancelSubscription: (id: string) => void;
+  addSupportTicket: (ticket: Omit<SupportTicket, 'id' | 'ticketNumber' | 'createdAt' | 'updatedAt'>) => SupportTicket;
+  addTicketMessage: (ticketId: string, message: string, sender?: 'CUSTOMER' | 'AGENT', senderName?: string) => void;
+  addInventoryKey: (key: Omit<InventoryKey, 'id' | 'addedAt'>) => void;
+  deleteInventoryKey: (id: string) => void;
+  updateUserWallet: (userId: string, amount: number, action: 'CREDIT' | 'DEBIT', reason?: string) => void;
+  updateStoreSettings: (newSettings: Partial<StoreSettings>) => void;
 }
 
-const StoreContext = createContext<StoreContextType | null>(null);
+const StoreContext = createContext<StoreContextType | undefined>(undefined);
 
 export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  // Load initial saved state or defaults
   const [products, setProducts] = useState<Product[]>(() => {
-    const saved = localStorage.getItem('playbeat_products_v3');
+    const saved = localStorage.getItem('playbeat_products_v6');
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
-        if (parsed.some((p: Product) => p.id === 'prod-proj-hy300-pro')) {
-          return parsed;
-        }
-      } catch (e) {
-        // fallback
-      }
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      } catch (e) {}
     }
     return INITIAL_PRODUCTS;
   });
 
-  const [categories] = useState<Category[]>(INITIAL_CATEGORIES);
-  
+  const [categories, setCategories] = useState<Category[]>(() => {
+    const saved = localStorage.getItem('playbeat_categories');
+    return saved ? JSON.parse(saved) : INITIAL_CATEGORIES;
+  });
+
   const [cart, setCart] = useState<CartItem[]>(() => {
     const saved = localStorage.getItem('playbeat_cart');
     return saved ? JSON.parse(saved) : [];
   });
 
   const [favorites, setFavorites] = useState<string[]>(() => {
-    const saved = localStorage.getItem('playbeat_favs');
-    return saved ? JSON.parse(saved) : ['prod-stream-1', 'prod-proj-1', 'prod-ai-1'];
+    const saved = localStorage.getItem('playbeat_favorites');
+    return saved ? JSON.parse(saved) : [];
   });
 
   const [orders, setOrders] = useState<Order[]>(() => {
     const saved = localStorage.getItem('playbeat_orders');
-    return saved ? JSON.parse(saved) : [
-      {
-        id: 'ord-sample-1',
-        orderNumber: 'PB-849201-4921',
-        createdAt: '2026-08-16T14:20:00.000Z',
-        customerEmail: 'alex@playbeat.io',
-        customerName: 'Alex Vance',
-        items: [
-          {
-            product: INITIAL_PRODUCTS[2], // Netflix
-            quantity: 1,
-            unitPrice: INITIAL_PRODUCTS[2].discountPrice || INITIAL_PRODUCTS[2].price,
-            licenseKeys: ['PB-NFLX-4K92-VAULT-2026'],
-            downloadUrl: 'https://netflix.com/login'
-          }
-        ],
-        subtotal: 11999,
-        discount: 1200,
-        total: 10799,
-        currency: 'PKR',
-        paymentMethod: 'jazzcash',
-        paymentStatus: 'PAID',
-        couponCode: 'VIP10',
-        transactionRef: 'JC-TXN-9842018'
-      }
-    ];
+    return saved ? JSON.parse(saved) : [];
   });
 
-  // Initialize view and role based on browser URL pathname
-  const getInitialView = (): ActiveView => {
-    if (typeof window !== 'undefined') {
-      const path = window.location.pathname.toLowerCase();
-      if (path === '/adminpanel' || path === '/admin' || path === '/wp-admin') return 'admin';
-      if (path === '/vendor') return 'vendor';
-      if (path === '/affiliate') return 'affiliate';
-      if (path === '/storefront') return 'storefront';
-    }
-    return 'storefront';
-  };
+  const [coupons, setCoupons] = useState<Coupon[]>(() => {
+    const saved = localStorage.getItem('playbeat_coupons');
+    return saved ? JSON.parse(saved) : INITIAL_COUPONS;
+  });
 
-  const getInitialRole = (): UserRole => {
-    if (typeof window !== 'undefined') {
-      const path = window.location.pathname.toLowerCase();
-      if (path === '/adminpanel' || path === '/admin' || path === '/wp-admin') return 'ADMIN';
-      if (path === '/vendor') return 'VENDOR';
-      if (path === '/affiliate') return 'AFFILIATE';
-    }
-    return 'CUSTOMER';
-  };
+  const [notifications, setNotifications] = useState<NotificationItem[]>(() => {
+    const saved = localStorage.getItem('playbeat_notifications');
+    return saved ? JSON.parse(saved) : INITIAL_NOTIFICATIONS;
+  });
 
-  const [coupons, setCoupons] = useState<Coupon[]>(INITIAL_COUPONS);
-  const [notifications, setNotifications] = useState<NotificationItem[]>(INITIAL_NOTIFICATIONS);
-  const [user, setUser] = useState<User>(DEMO_USER);
-  const [activeRole, setActiveRole] = useState<UserRole>(getInitialRole);
-  const [activeView, setActiveViewState] = useState<ActiveView>(getInitialView);
+  const [user, setUser] = useState<User>(() => {
+    const saved = localStorage.getItem('playbeat_user');
+    return saved ? JSON.parse(saved) : DEMO_USER;
+  });
 
-  const setActiveView = (view: ActiveView) => {
-    setActiveViewState(view);
-    if (typeof window !== 'undefined') {
-      let targetPath = '/';
-      if (view === 'storefront') targetPath = '/storefront';
-      else if (view === 'admin') targetPath = '/adminpanel';
-      else if (view === 'vendor') targetPath = '/vendor';
-      else if (view === 'affiliate') targetPath = '/affiliate';
+  const [subscriptions, setSubscriptions] = useState<Subscription[]>(() => {
+    const saved = localStorage.getItem('playbeat_subscriptions');
+    return saved ? JSON.parse(saved) : INITIAL_SUBSCRIPTIONS;
+  });
 
-      if (window.location.pathname !== targetPath && !(view === 'storefront' && window.location.pathname === '/')) {
-        window.history.pushState({ view }, '', targetPath);
-      }
-    }
-  };
+  const [inventoryKeys, setInventoryKeys] = useState<InventoryKey[]>(() => {
+    const saved = localStorage.getItem('playbeat_inventory_keys');
+    return saved ? JSON.parse(saved) : INITIAL_INVENTORY_KEYS;
+  });
 
-  // Sync with browser back/forward buttons
-  useEffect(() => {
-    const handlePopState = () => {
-      const path = window.location.pathname.toLowerCase();
-      if (path === '/adminpanel' || path === '/admin' || path === '/wp-admin') {
-        setActiveViewState('admin');
-        setActiveRole('ADMIN');
-      } else if (path === '/vendor') {
-        setActiveViewState('vendor');
-        setActiveRole('VENDOR');
-      } else if (path === '/affiliate') {
-        setActiveViewState('affiliate');
-        setActiveRole('AFFILIATE');
-      } else {
-        setActiveViewState('storefront');
-        setActiveRole('CUSTOMER');
-      }
-    };
+  const [supportTickets, setSupportTickets] = useState<SupportTicket[]>(() => {
+    const saved = localStorage.getItem('playbeat_support_tickets');
+    return saved ? JSON.parse(saved) : INITIAL_TICKETS;
+  });
 
-    window.addEventListener('popstate', handlePopState);
-    return () => window.removeEventListener('popstate', handlePopState);
-  }, []);
+  const [auditLogs, setAuditLogs] = useState<AuditLog[]>(() => {
+    const saved = localStorage.getItem('playbeat_audit_logs');
+    return saved ? JSON.parse(saved) : INITIAL_AUDIT_LOGS;
+  });
 
-  // Filtering states
+  const [storeSettings, setStoreSettings] = useState<StoreSettings>(() => {
+    const saved = localStorage.getItem('playbeat_store_settings');
+    return saved ? JSON.parse(saved) : DEFAULT_STORE_SETTINGS;
+  });
+
+  const [activeRole, setActiveRole] = useState<UserRole>('SUPER_ADMIN');
+  const [activeView, setActiveView] = useState<ActiveView>('storefront');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedType, setSelectedType] = useState<string>('ALL');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [sortBy, setSortBy] = useState<'popular' | 'newest' | 'price_asc' | 'price_desc' | 'rating'>('popular');
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 100000]);
-  
-  // UI & Theme states
   const [currency, setCurrency] = useState<Currency>('PKR');
-  const [themePreset, setThemePreset] = useState<ThemePreset>(() => {
-    const saved = localStorage.getItem('playbeat_theme');
-    return (saved as ThemePreset) || 'martfury';
-  });
+  const [themePreset, setThemePreset] = useState<ThemePreset>('martfury');
+  
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  const [isCartOpen, setIsCartOpen] = useState(false);
-  const [isWishlistOpen, setIsWishlistOpen] = useState(false);
-  const [isOrderLookupOpen, setIsOrderLookupOpen] = useState(false);
-  const [isSupportOpen, setIsSupportOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
+  const [isWishlistOpen, setIsWishlistOpen] = useState<boolean>(false);
+  const [isOrderLookupOpen, setIsOrderLookupOpen] = useState<boolean>(false);
+  const [isSupportOpen, setIsSupportOpen] = useState<boolean>(false);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState<boolean>(false);
+  const [isCustomerDashboardOpen, setIsCustomerDashboardOpen] = useState<boolean>(false);
+  const [isInvoiceModalOpen, setIsInvoiceModalOpen] = useState<boolean>(false);
+  const [activeInvoiceOrder, setActiveInvoiceOrder] = useState<Order | null>(null);
   const [appliedCoupon, setAppliedCoupon] = useState<Coupon | null>(null);
+  const [isCustomerLoggedIn, setIsCustomerLoggedIn] = useState<boolean>(true);
+  
   const [isAdminAuthenticated, setIsAdminAuthenticated] = useState<boolean>(() => {
     return localStorage.getItem('playbeat_admin_auth') === 'true';
   });
@@ -290,9 +398,9 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     checkBackendAndFetch();
   }, []);
 
-  // Sync state to localStorage
+  // Save to localStorage
   useEffect(() => {
-    localStorage.setItem('playbeat_products_v3', JSON.stringify(products));
+    localStorage.setItem('playbeat_products_v6', JSON.stringify(products));
   }, [products]);
 
   useEffect(() => {
@@ -300,54 +408,78 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   }, [cart]);
 
   useEffect(() => {
-    localStorage.setItem('playbeat_favs', JSON.stringify(favorites));
+    localStorage.setItem('playbeat_favorites', JSON.stringify(favorites));
   }, [favorites]);
 
   useEffect(() => {
     localStorage.setItem('playbeat_orders', JSON.stringify(orders));
   }, [orders]);
 
-  // Handle theme class on root and persist
   useEffect(() => {
-    localStorage.setItem('playbeat_theme', themePreset);
+    localStorage.setItem('playbeat_subscriptions', JSON.stringify(subscriptions));
+  }, [subscriptions]);
+
+  useEffect(() => {
+    localStorage.setItem('playbeat_inventory_keys', JSON.stringify(inventoryKeys));
+  }, [inventoryKeys]);
+
+  useEffect(() => {
+    localStorage.setItem('playbeat_support_tickets', JSON.stringify(supportTickets));
+  }, [supportTickets]);
+
+  useEffect(() => {
+    localStorage.setItem('playbeat_audit_logs', JSON.stringify(auditLogs));
+  }, [auditLogs]);
+
+  useEffect(() => {
+    localStorage.setItem('playbeat_store_settings', JSON.stringify(storeSettings));
+  }, [storeSettings]);
+
+  useEffect(() => {
+    localStorage.setItem('playbeat_user', JSON.stringify(user));
+  }, [user]);
+
+  // Apply theme preset class
+  useEffect(() => {
     const root = document.documentElement;
     root.classList.remove('theme-martfury', 'theme-obsidian', 'theme-titanium', 'theme-cyberpunk', 'theme-emerald');
     root.classList.add(`theme-${themePreset}`);
-    if (themePreset === 'titanium') {
-      root.classList.remove('dark');
-    } else {
-      root.classList.add('dark');
-    }
   }, [themePreset]);
 
-  // Cart helper calculations
+  // Cart Calculations
   const cartTotalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
   
   const cartSubtotalPKR = cart.reduce((sum, item) => {
-    const effectivePrice = item.product.discountPrice ?? item.product.price;
-    return sum + effectivePrice * item.quantity;
+    const unitPrice = item.selectedVariant?.price ?? item.product.discountPrice ?? item.product.price;
+    return sum + (unitPrice * item.quantity);
   }, 0);
 
-  let cartDiscountPKR = 0;
-  if (appliedCoupon && cartSubtotalPKR >= appliedCoupon.minSpendPKR) {
-    const calculated = (cartSubtotalPKR * appliedCoupon.discountPercent) / 100;
-    cartDiscountPKR = appliedCoupon.maxDiscountPKR ? Math.min(calculated, appliedCoupon.maxDiscountPKR) : calculated;
-  }
+  const cartDiscountPKR = appliedCoupon 
+    ? Math.min(
+        (cartSubtotalPKR * appliedCoupon.discountPercent) / 100, 
+        appliedCoupon.maxDiscountPKR || 999999
+      ) 
+    : 0;
 
   const cartFinalTotalPKR = Math.max(0, cartSubtotalPKR - cartDiscountPKR);
 
-  // Cart actions
-  const addToCart = (product: Product, quantity = 1, selectedLicense?: string) => {
+  // Cart Actions
+  const addToCart = (product: Product, quantity: number = 1, selectedVariant?: ProductVariant, selectedLicense?: string) => {
     setCart(prev => {
-      const existingIndex = prev.findIndex(item => item.product.id === product.id);
-      if (existingIndex > -1) {
-        const updated = [...prev];
-        updated[existingIndex].quantity += quantity;
-        if (selectedLicense) updated[existingIndex].selectedLicense = selectedLicense;
-        return updated;
+      const existing = prev.find(item => 
+        item.product.id === product.id && 
+        item.selectedVariant?.id === selectedVariant?.id
+      );
+      if (existing) {
+        return prev.map(item => 
+          item === existing 
+            ? { ...item, quantity: item.quantity + quantity }
+            : item
+        );
       }
-      return [...prev, { product, quantity, selectedLicense: selectedLicense || product.licenseType }];
+      return [...prev, { product, quantity, selectedVariant, selectedLicense }];
     });
+    setIsCartOpen(true);
   };
 
   const removeFromCart = (productId: string) => {
@@ -359,7 +491,9 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       removeFromCart(productId);
       return;
     }
-    setCart(prev => prev.map(item => item.product.id === productId ? { ...item, quantity } : item));
+    setCart(prev => prev.map(item => 
+      item.product.id === productId ? { ...item, quantity } : item
+    ));
   };
 
   const clearCart = () => {
@@ -367,160 +501,119 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     setAppliedCoupon(null);
   };
 
-  // Wishlist actions
+  // Favorites
   const toggleFavorite = (productId: string) => {
     setFavorites(prev => 
-      prev.includes(productId) ? prev.filter(id => id !== productId) : [...prev, productId]
+      prev.includes(productId) 
+        ? prev.filter(id => id !== productId)
+        : [...prev, productId]
     );
   };
 
   const isFavorite = (productId: string) => favorites.includes(productId);
 
-  // Coupon actions
+  // Coupons
   const applyCoupon = (code: string) => {
-    const cleaned = code.trim().toUpperCase();
-    const found = coupons.find(c => c.code === cleaned);
+    const cleanCode = code.trim().toUpperCase();
+    const found = coupons.find(c => c.code.toUpperCase() === cleanCode);
     if (!found) {
-      return { success: false, message: 'Invalid promo code. Try PLAYBEAT20 or LAUNCH50' };
+      return { success: false, message: 'Invalid or expired promo coupon.' };
     }
-    if (cartSubtotalPKR < found.minSpendPKR) {
-      return { success: false, message: `Coupon requires a minimum spend of Rs ${found.minSpendPKR.toLocaleString()}` };
+    if (found.minSpendPKR && cartSubtotalPKR < found.minSpendPKR) {
+      return { success: false, message: `Minimum spend of Rs ${found.minSpendPKR.toLocaleString()} required.` };
     }
     setAppliedCoupon(found);
-    return { success: true, message: `Promo code ${cleaned} applied successfully!` };
+    return { success: true, message: `Coupon ${cleanCode} applied (-${found.discountPercent}%)!` };
   };
 
   const removeCoupon = () => setAppliedCoupon(null);
+  const addCoupon = (coupon: Coupon) => setCoupons(prev => [coupon, ...prev]);
 
-  const addCoupon = (newCoupon: Coupon) => {
-    setCoupons(prev => [newCoupon, ...prev]);
-    addNotification({
-      type: 'SYSTEM',
-      title: 'Coupon Created',
-      message: `Code ${newCoupon.code} (${newCoupon.discountPercent}% OFF) is now active.`
-    });
-  };
-
-  const updateOrderStatus = (orderId: string, status: 'COMPLETED' | 'PENDING' | 'REFUNDED') => {
-    setOrders(prev => prev.map(o => o.id === orderId ? { ...o, status } : o));
-    addNotification({
-      type: 'ORDER',
-      title: 'Order Status Updated',
-      message: `Order status set to ${status}.`
-    });
-  };
-
-  const adminLogin = (email: string, password: string) => {
-    const normalizedEmail = (email || '').trim().toLowerCase();
-    const normalizedPassword = (password || '').trim();
-
-    const correctEmail = import.meta.env.VITE_ADMIN_EMAIL ?? import.meta.env.REACT_APP_ADMIN_EMAIL;
-    const correctPassword = import.meta.env.VITE_ADMIN_PASSWORD ?? import.meta.env.REACT_APP_ADMIN_PASSWORD;
-
-    if (!correctEmail || !correctPassword) {
-      return { success: false, message: 'Admin authentication not configured. Contact system administrator.' };
-    }
-
-    if (normalizedEmail === String(correctEmail).trim().toLowerCase() && normalizedPassword === String(correctPassword).trim()) {
-      setIsAdminAuthenticated(true);
-      localStorage.setItem('playbeat_admin_auth', 'true');
-      localStorage.setItem('playbeat_admin_email', normalizedEmail);
-      return { success: true, message: 'Authentication successful! Welcome to PlayBeat Admin.' };
-    }
-    return { success: false, message: 'Invalid email or password. Please try again.' };
-  };
-
-  const adminLogout = () => {
-    setIsAdminAuthenticated(false);
-    localStorage.removeItem('playbeat_admin_auth');
-  };
-
-  // Product management actions
+  // Product CRUD
   const addProduct = (newProdData: Omit<Product, 'id' | 'rating' | 'reviewCount' | 'salesCount'>) => {
-    const id = `prod-${Date.now()}`;
     const newProduct: Product = {
       ...newProdData,
-      id,
+      id: `prod-${Date.now()}`,
       rating: 5.0,
-      reviewCount: 0,
+      reviewCount: 1,
       salesCount: 0,
-      reviews: []
+      createdAt: new Date().toISOString()
     };
     setProducts(prev => [newProduct, ...prev]);
-    
-    // Sync to MongoDB
+
+    // Async persist to Express Backend
     fetch('/api/products', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newProduct)
-    }).catch(e => console.warn('Sync to MongoDB pending:', e));
-
-    addNotification({
-      type: 'SYSTEM',
-      title: 'Product Published',
-      message: `"${newProduct.title}" is now active in the store.`
-    });
+    }).catch(() => {});
   };
 
   const updateProduct = (id: string, updates: Partial<Product>) => {
     setProducts(prev => prev.map(p => p.id === id ? { ...p, ...updates } : p));
-    
-    // Sync to MongoDB
+
     fetch(`/api/products/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(updates)
-    }).catch(e => console.warn('Update to MongoDB pending:', e));
+    }).catch(() => {});
   };
 
   const deleteProduct = (id: string) => {
     setProducts(prev => prev.filter(p => p.id !== id));
-    removeFromCart(id);
 
-    // Sync to MongoDB
     fetch(`/api/products/${id}`, {
       method: 'DELETE'
-    }).catch(e => console.warn('Delete on MongoDB pending:', e));
+    }).catch(() => {});
   };
 
   const addReview = (productId: string, reviewData: Omit<Review, 'id' | 'createdAt' | 'helpfulCount'>) => {
     const newReview: Review = {
       ...reviewData,
       id: `rev-${Date.now()}`,
-      createdAt: 'Just now',
+      createdAt: new Date().toISOString().split('T')[0],
       helpfulCount: 0
     };
 
     setProducts(prev => prev.map(p => {
-      if (p.id !== productId) return p;
-      const currentReviews = p.reviews || [];
-      const updatedReviews = [newReview, ...currentReviews];
-      const newTotalRating = updatedReviews.reduce((sum, r) => sum + r.rating, 0);
-      const newAvgRating = parseFloat((newTotalRating / updatedReviews.length).toFixed(1));
-      return {
-        ...p,
-        reviews: updatedReviews,
-        rating: newAvgRating,
-        reviewCount: updatedReviews.length
-      };
+      if (p.id === productId) {
+        const existingReviews = p.reviews || [];
+        const updatedReviews = [newReview, ...existingReviews];
+        const avgRating = Number((updatedReviews.reduce((sum, r) => sum + r.rating, 0) / updatedReviews.length).toFixed(2));
+        return {
+          ...p,
+          reviews: updatedReviews,
+          reviewCount: updatedReviews.length,
+          rating: avgRating
+        };
+      }
+      return p;
     }));
   };
 
-  // Checkout process
+  // Checkout Process
   const processCheckout = (
     paymentMethod: Order['paymentMethod'], 
-    customerDetails: { name: string; email: string; phone?: string }
+    customerDetails: { name: string; email: string; phone?: string; address?: string }
   ): Order => {
     const orderNumber = generateOrderNumber();
+    
+    // Auto generate keys / tracking
     const orderItems = cart.map(item => {
-      const unitPrice = item.product.discountPrice ?? item.product.price;
-      const keys = Array.from({ length: item.quantity }, () => generateLicenseKey(item.product.sku.split('-')[0] || 'PB'));
+      const isHW = item.product.type === 'HARDWARE';
+      const keys = isHW 
+        ? [`TCS-PK-EXP-${Math.floor(1000000 + Math.random() * 9000000)}`]
+        : [generateLicenseKey(item.product.title)];
+
       return {
         product: item.product,
         quantity: item.quantity,
-        unitPrice,
+        variantName: item.selectedVariant?.name,
+        unitPrice: item.selectedVariant?.price ?? item.product.discountPrice ?? item.product.price,
         licenseKeys: keys,
-        downloadUrl: item.product.downloadFile ? `https://downloads.playbeat.io/files/${item.product.downloadFile}` : undefined
+        instructions: isHW 
+          ? 'ZeroByte projector dispatched via TCS courier in 24-48 hours with official 1-year warranty card.' 
+          : 'Instant automated license activation. Enter this code into your official software/streaming portal.'
       };
     });
 
@@ -528,147 +621,281 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       id: `ord-${Date.now()}`,
       orderNumber,
       createdAt: new Date().toISOString(),
-      customerEmail: customerDetails.email || user.email,
-      customerName: customerDetails.name || user.name,
+      customerName: customerDetails.name,
+      customerEmail: customerDetails.email,
+      customerPhone: customerDetails.phone,
+      shippingAddress: customerDetails.address,
       items: orderItems,
       subtotal: cartSubtotalPKR,
       discount: cartDiscountPKR,
-      total: cartFinalTotalPKR,
       totalAmountPKR: cartFinalTotalPKR,
       currency,
       paymentMethod,
       paymentStatus: 'PAID',
       status: 'COMPLETED',
       couponCode: appliedCoupon?.code,
-      transactionRef: `TXN-${Math.random().toString(36).substring(2, 9).toUpperCase()}`
+      transactionRef: `TXN-${Date.now().toString().slice(-8)}`
     };
 
     setOrders(prev => [newOrder, ...prev]);
+    clearCart();
 
-    // Dispatch order to MongoDB
+    // Trigger celebration
+    try {
+      confetti({
+        particleCount: 80,
+        spread: 70,
+        origin: { y: 0.6 }
+      });
+    } catch (e) {}
+
+    // Persist to backend
     fetch('/api/orders', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newOrder)
-    }).catch(e => console.warn('Order MongoDB dispatch pending:', e));
+    }).catch(() => {});
 
-    // Update product sales counts
-    setProducts(prev => prev.map(prod => {
-      const cartMatch = cart.find(c => c.product.id === prod.id);
-      if (cartMatch) {
-        return {
-          ...prod,
-          salesCount: prod.salesCount + cartMatch.quantity,
-          stock: prod.stock > 0 ? Math.max(0, prod.stock - cartMatch.quantity) : prod.stock
-        };
-      }
-      return prod;
-    }));
-
-    // Trigger confetti
-    try {
-      confetti({
-        particleCount: 120,
-        spread: 70,
-        origin: { y: 0.6 }
-      });
-    } catch {
-      // safe fallback
-    }
-
-    addNotification({
-      type: 'ORDER',
-      title: 'Order Confirmed!',
-      message: `Order #${orderNumber} processed successfully. License keys dispatched to ${customerDetails.email}.`
-    });
-
-    clearCart();
     return newOrder;
   };
 
-  // Notification actions
+  const updateOrderStatus = (orderId: string, status: Order['status']) => {
+    setOrders(prev => prev.map(o => o.id === orderId ? { ...o, status } : o));
+  };
+
+  // Auth
+  const adminLogin = (password: string) => {
+    if (password === 'playbeat1122') {
+      setIsAdminAuthenticated(true);
+      localStorage.setItem('playbeat_admin_auth', 'true');
+      return { success: true, message: 'Welcome Master Super Admin!' };
+    }
+    return { success: false, message: 'Incorrect master password. Use playbeat1122' };
+  };
+
+  const adminLogout = () => {
+    setIsAdminAuthenticated(false);
+    localStorage.removeItem('playbeat_admin_auth');
+    setActiveView('storefront');
+  };
+
+  const customerLogin = (email: string, name?: string) => {
+    setUser({
+      id: `u-${Date.now()}`,
+      name: name || 'Valued Customer',
+      email: email.trim(),
+      role: 'CUSTOMER',
+      balancePKR: 5000,
+      avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80'
+    });
+    setIsCustomerLoggedIn(true);
+    setIsAuthModalOpen(false);
+  };
+
+  const customerLogout = () => {
+    setIsCustomerLoggedIn(false);
+    setUser({
+      id: 'guest',
+      name: 'Guest Customer',
+      email: 'guest@playbeat.digital',
+      role: 'CUSTOMER',
+      balancePKR: 0
+    });
+  };
+
+  // Subscriptions & Tickets & Inventory Keys
+  const addSubscription = (subData: Omit<Subscription, 'id'>) => {
+    const newSub: Subscription = {
+      ...subData,
+      id: `sub-${Date.now()}`
+    };
+    setSubscriptions(prev => [newSub, ...prev]);
+  };
+
+  const cancelSubscription = (id: string) => {
+    setSubscriptions(prev => prev.map(s => s.id === id ? { ...s, status: 'CANCELLED', autoRenew: false } : s));
+  };
+
+  const addSupportTicket = (ticketData: Omit<SupportTicket, 'id' | 'ticketNumber' | 'createdAt' | 'updatedAt'>) => {
+    const newTicket: SupportTicket = {
+      ...ticketData,
+      id: `tkt-${Date.now()}`,
+      ticketNumber: `TKT-${Math.floor(10000 + Math.random() * 90000)}`,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+    setSupportTickets(prev => [newTicket, ...prev]);
+    return newTicket;
+  };
+
+  const addTicketMessage = (ticketId: string, message: string, sender: 'CUSTOMER' | 'AGENT' = 'CUSTOMER', senderName: string = 'You') => {
+    setSupportTickets(prev => prev.map(t => {
+      if (t.id === ticketId) {
+        const newMsg = {
+          id: `msg-${Date.now()}`,
+          sender,
+          senderName,
+          message,
+          timestamp: new Date().toISOString()
+        };
+        return {
+          ...t,
+          messages: [...t.messages, newMsg],
+          updatedAt: new Date().toISOString()
+        };
+      }
+      return t;
+    }));
+  };
+
+  const addInventoryKey = (keyData: Omit<InventoryKey, 'id' | 'addedAt'>) => {
+    const newKey: InventoryKey = {
+      ...keyData,
+      id: `key-${Date.now()}-${Math.random().toString(36).substr(2, 5)}`,
+      addedAt: new Date().toISOString().split('T')[0]
+    };
+    setInventoryKeys(prev => [newKey, ...prev]);
+  };
+
+  const deleteInventoryKey = (id: string) => {
+    setInventoryKeys(prev => prev.filter(k => k.id !== id));
+  };
+
+  const updateUserWallet = (userId: string, amount: number, action: 'CREDIT' | 'DEBIT', reason?: string) => {
+    setUser(prev => {
+      const current = prev.balancePKR || 0;
+      const updated = action === 'CREDIT' ? current + amount : Math.max(0, current - amount);
+      return { ...prev, balancePKR: updated };
+    });
+
+    const newLog: AuditLog = {
+      id: `aud-${Date.now()}`,
+      userId: 'admin@playbeat.digital',
+      userName: 'PlayBeat Super Admin',
+      userRole: 'ADMIN',
+      action: action === 'CREDIT' ? 'WALLET_CREDITED' : 'WALLET_DEBITED',
+      targetType: 'WALLET',
+      targetId: user.email,
+      details: `${action} Rs ${amount.toLocaleString()} (${reason || 'Wallet Adjustment'}).`,
+      timestamp: new Date().toISOString(),
+      ipAddress: '127.0.0.1'
+    };
+    setAuditLogs(prev => [newLog, ...prev]);
+  };
+
+  const updateStoreSettings = (newSettings: Partial<StoreSettings>) => {
+    setStoreSettings(prev => ({ ...prev, ...newSettings }));
+  };
+
+  // Notifications
   const markNotificationRead = (id: string) => {
     setNotifications(prev => prev.map(n => n.id === id ? { ...n, read: true } : n));
   };
 
-  const addNotification = (item: Omit<NotificationItem, 'id' | 'createdAt' | 'read'>) => {
-    const newNotif: NotificationItem = {
-      ...item,
+  const addNotification = (nData: Omit<NotificationItem, 'id' | 'createdAt' | 'read'>) => {
+    const newItem: NotificationItem = {
+      ...nData,
       id: `notif-${Date.now()}`,
-      createdAt: 'Just now',
-      read: false
+      read: false,
+      createdAt: 'Just now'
     };
-    setNotifications(prev => [newNotif, ...prev]);
+    setNotifications(prev => [newItem, ...prev]);
   };
 
   return (
-    <StoreContext.Provider value={{
-      products,
-      categories,
-      cart,
-      favorites,
-      orders,
-      coupons,
-      notifications,
-      user,
-      activeRole,
-      activeView,
-      selectedCategory,
-      selectedType,
-      searchQuery,
-      sortBy,
-      priceRange,
-      currency,
-      themePreset,
-      selectedProduct,
-      isCartOpen,
-      isWishlistOpen,
-      isOrderLookupOpen,
-      isSupportOpen,
-      appliedCoupon,
-      isAdminAuthenticated,
-      isMongoConnected,
-      setProducts,
-      addProduct,
-      updateProduct,
-      deleteProduct,
-      addReview,
-      addToCart,
-      removeFromCart,
-      updateCartQuantity,
-      clearCart,
-      cartTotalCount,
-      cartSubtotalPKR,
-      cartDiscountPKR,
-      cartFinalTotalPKR,
-      toggleFavorite,
-      isFavorite,
-      applyCoupon,
-      removeCoupon,
-      addCoupon,
-      processCheckout,
-      updateOrderStatus,
-      adminLogin,
-      adminLogout,
-      setSelectedProduct,
-      setIsCartOpen,
-      setIsWishlistOpen,
-      setIsOrderLookupOpen,
-      setIsSupportOpen,
-      setActiveView,
-      setActiveRole,
-      setSelectedCategory,
-      setSelectedType,
-      setSearchQuery,
-      setSortBy,
-      setPriceRange,
-      setCurrency,
-      setThemePreset,
-      formatCurrency,
-      formatPKR,
-      markNotificationRead,
-      addNotification
-    }}>
+    <StoreContext.Provider
+      value={{
+        products,
+        categories,
+        cart,
+        favorites,
+        orders,
+        coupons,
+        notifications,
+        user,
+        activeRole,
+        activeView,
+        selectedCategory,
+        selectedType,
+        searchQuery,
+        sortBy,
+        priceRange,
+        currency,
+        themePreset,
+        selectedProduct,
+        isCartOpen,
+        isWishlistOpen,
+        isOrderLookupOpen,
+        isSupportOpen,
+        isAuthModalOpen,
+        isCustomerDashboardOpen,
+        isInvoiceModalOpen,
+        activeInvoiceOrder,
+        appliedCoupon,
+        isAdminAuthenticated,
+        isCustomerLoggedIn,
+        isMongoConnected,
+        subscriptions,
+        inventoryKeys,
+        supportTickets,
+        auditLogs,
+        storeSettings,
+        formatCurrency,
+        formatPKR,
+        setProducts,
+        addProduct,
+        updateProduct,
+        deleteProduct,
+        addReview,
+        addToCart,
+        removeFromCart,
+        updateCartQuantity,
+        clearCart,
+        cartTotalCount,
+        cartSubtotalPKR,
+        cartDiscountPKR,
+        cartFinalTotalPKR,
+        toggleFavorite,
+        isFavorite,
+        applyCoupon,
+        removeCoupon,
+        addCoupon,
+        processCheckout,
+        updateOrderStatus,
+        adminLogin,
+        adminLogout,
+        customerLogin,
+        customerLogout,
+        setSelectedProduct,
+        setIsCartOpen,
+        setIsWishlistOpen,
+        setIsOrderLookupOpen,
+        setIsSupportOpen,
+        setIsAuthModalOpen,
+        setIsCustomerDashboardOpen,
+        setIsInvoiceModalOpen,
+        setActiveInvoiceOrder,
+        setActiveView,
+        setActiveRole,
+        setSelectedCategory,
+        setSelectedType,
+        setSearchQuery,
+        setSortBy,
+        setPriceRange,
+        setCurrency,
+        setThemePreset,
+        markNotificationRead,
+        addNotification,
+        addSubscription,
+        cancelSubscription,
+        addSupportTicket,
+        addTicketMessage,
+        addInventoryKey,
+        deleteInventoryKey,
+        updateUserWallet,
+        updateStoreSettings
+      }}
+    >
       {children}
     </StoreContext.Provider>
   );

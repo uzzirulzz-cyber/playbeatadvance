@@ -6,7 +6,7 @@ export const EXCHANGE_RATES: Record<Currency, number> = {
   EUR: 1 / 305,
   GBP: 1 / 355,
   AED: 1 / 76.2,
-  INR: 1 / 3.35,
+  SAR: 1 / 74.5,
 };
 
 export const CURRENCY_SYMBOLS: Record<Currency, string> = {
@@ -15,7 +15,7 @@ export const CURRENCY_SYMBOLS: Record<Currency, string> = {
   EUR: '€',
   GBP: '£',
   AED: 'AED ',
-  INR: '₹',
+  SAR: 'SAR ',
 };
 
 /**
@@ -26,7 +26,7 @@ export function formatCurrency(amountPKR: number, currency: Currency = 'PKR'): s
   const converted = amountPKR * rate;
   const symbol = CURRENCY_SYMBOLS[currency] || '₨';
 
-  if (currency === 'PKR' || currency === 'INR') {
+  if (currency === 'PKR' || currency === 'AED' || currency === 'SAR') {
     return `${symbol} ${Math.round(converted).toLocaleString('en-US')}`;
   }
   return `${symbol}${converted.toFixed(2)}`;
