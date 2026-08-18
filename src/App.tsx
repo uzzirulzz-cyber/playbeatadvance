@@ -98,14 +98,14 @@ export function App() {
   }, [products, selectedCategory, selectedType, searchQuery, sortBy]);
 
   return (
-    <div className="min-h-screen flex flex-col transition-colors duration-300 bg-[#07182d] text-white">
+    <div className="min-h-screen flex flex-col transition-colors duration-300 bg-[#f7f4ee] text-[#10233d]">
       {/* Top Main Navigation */}
       <NavbarPremium />
 
       {/* Main Viewport Router */}
-      <main className="flex-1 w-full bg-[#07182d]">
+      <main className="flex-1 w-full bg-[#f7f4ee]">
         {activeView === 'storefront' && (
-          <div className="bg-[#07182d]">
+          <div className="bg-[#f7f4ee]">
             {/* Premium Hero Section */}
             {sectionConfig.heroSpotlight && <HeroSectionPremium />}
 

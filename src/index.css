@@ -10,8 +10,8 @@
   body {
     font-family: var(--font-sans);
     overflow-x: hidden;
-    background-color: #07182d;
-    color: #e5edf8;
+    background: linear-gradient(180deg, #f7f4ee 0%, #f3f6fb 100%);
+    color: #10233d;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -31,27 +31,27 @@
 .theme-obsidian,
 :root {
   /* Primary Colors */
-  --primary-navy: #0B1F3A;
-  --accent-yellow: #FFD21F;
-  --bg-white: #07182d;
-  --bg-light-grey: #0F2342;
-  --text-dark-grey: #dfeaf8;
-  --border-light: rgba(255, 255, 255, 0.1);
+  --primary-navy: #0f2342;
+  --accent-yellow: #d7a53a;
+  --bg-white: #fffdf9;
+  --bg-light-grey: #f3f6fb;
+  --text-dark-grey: #1d2a3a;
+  --border-light: rgba(15, 35, 66, 0.09);
   
   /* Layout Colors */
-  --bg-main: #07182d;
-  --bg-card: rgba(11, 31, 58, 0.9);
-  --bg-surface: #0F2342;
-  --border-color: rgba(255, 255, 255, 0.1);
+  --bg-main: #f7f4ee;
+  --bg-card: rgba(255, 255, 255, 0.92);
+  --bg-surface: #f3f6fb;
+  --border-color: rgba(15, 35, 66, 0.09);
   
   /* Accent Colors */
-  --accent-primary: #FFD21F;
-  --accent-secondary: #0B1F3A;
-  --accent-glow: rgba(255, 210, 31, 0.15);
+  --accent-primary: #d7a53a;
+  --accent-secondary: #10233d;
+  --accent-glow: rgba(215, 165, 58, 0.16);
   
   /* Text Colors */
-  --text-main: #edf5ff;
-  --text-muted: #a4b4c9;
+  --text-main: #10233d;
+  --text-muted: #58687c;
   
   /* Interactive States */
   --hover-overlay: rgba(11, 31, 58, 0.05);
