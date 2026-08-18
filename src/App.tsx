@@ -1,7 +1,11 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import { useStore } from './store/useStore';
-import { Navbar } from './components/Navbar';
-import { HeroSpotlight } from './components/HeroSpotlight';
+import { NavbarPremium } from './components/NavbarPremium';
+import { HeroSectionPremium } from './components/HeroSectionPremium';
+import { FeaturedCategoriesPremium } from './components/FeaturedCategoriesPremium';
+import { TrendingProductsSection } from './components/TrendingProductsSection';
+import { BestSellersSection } from './components/BestSellersSection';
+import { LimitedTimeOffersSection } from './components/LimitedTimeOffersSection';
 import { SmartProjectorsSection } from './components/SmartProjectorsSection';
 import { CategoryFilterBar } from './components/CategoryFilterBar';
 import { ProductCard } from './components/ProductCard';
@@ -14,8 +18,8 @@ import { AffiliateHub } from './components/AffiliateHub';
 import { AdminConsole } from './components/AdminConsole';
 import { LiveSupportAssistant } from './components/LiveSupportAssistant';
 import { ThemeSectionManager } from './components/ThemeSectionManager';
-import { Footer } from './components/Footer';
-import { Sparkles, AlertCircle } from 'lucide-react';
+import { FooterPremium } from './components/FooterPremium';
+import { AlertCircle } from 'lucide-react';
 
 export function App() {
   const {
@@ -96,58 +100,74 @@ export function App() {
   return (
     <div className="min-h-screen flex flex-col transition-colors duration-300">
       {/* Top Main Navigation */}
-      <Navbar />
+      <NavbarPremium />
 
       {/* Main Viewport Router */}
-      <main className="flex-1 w-full">
+      <main className="flex-1 w-full bg-white">
         {activeView === 'storefront' && (
           <div>
-            {/* Dynamic Hero Showcase */}
-            {sectionConfig.heroSpotlight && <HeroSpotlight />}
+            {/* Premium Hero Section */}
+            {sectionConfig.heroSpotlight && <HeroSectionPremium />}
 
-            {/* Marketplace Grid & Filters Container */}
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 space-y-8">
-              
-              {/* Pinned Smart Projectors Showcase Section - Sticky at Top */}
+            <div className="space-y-8">
+              {/* Featured Categories */}
+              <div className="max-w-7xl mx-auto px-4 sm:px-6">
+                <FeaturedCategoriesPremium />
+              </div>
+
+              {/* Trending Products Section */}
+              <TrendingProductsSection />
+
+              {/* Smart Projectors Showcase Section - kept in flow, no sticky pinning */}
               {sectionConfig.smartProjectors && (
-                <div className="sticky top-0 z-40 -mx-4 sm:-mx-6 px-4 sm:px-6 pb-4 bg-gradient-to-b from-slate-900 to-transparent backdrop-blur-lg">
+                <div className="-mx-4 sm:-mx-6 px-4 sm:px-6 pb-4">
                   <SmartProjectorsSection />
                 </div>
               )}
 
+              {/* Limited-Time Offers Section */}
+              <LimitedTimeOffersSection />
+
+              {/* Best Sellers Section */}
+              <BestSellersSection />
+
               {/* Category Slider & Filter Bar */}
               {sectionConfig.categoryFilter && (
-                <CategoryFilterBar />
+                <div className="max-w-7xl mx-auto px-4 sm:px-6">
+                  <CategoryFilterBar />
+                </div>
               )}
 
               {/* Products Grid */}
-              {filteredProducts.length > 0 ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-                  {filteredProducts.map(product => (
-                    <ProductCard key={product.id} product={product} />
-                  ))}
-                </div>
-              ) : (
-                <div className="py-20 text-center space-y-3 p-8 rounded-3xl bg-slate-900/40 border border-slate-800">
-                  <div className="w-14 h-14 rounded-full bg-slate-900 border border-slate-700 flex items-center justify-center mx-auto text-slate-500">
-                    <AlertCircle className="w-6 h-6" />
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
+                {filteredProducts.length > 0 ? (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+                    {filteredProducts.map(product => (
+                      <ProductCard key={product.id} product={product} />
+                    ))}
                   </div>
-                  <h3 className="font-extrabold text-lg text-white">No products found matching your criteria</h3>
-                  <p className="text-xs text-slate-400 max-w-sm mx-auto">
-                    Try adjusting your search terms, changing the category filter, or resetting all filters.
-                  </p>
-                  <button
-                    onClick={() => {
-                      setSelectedCategory('all');
-                      setSelectedType('ALL');
-                      setSearchQuery('');
-                    }}
-                    className="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs cursor-pointer shadow-md"
-                  >
-                    Reset All Filters
-                  </button>
-                </div>
-              )}
+                ) : (
+                  <div className="py-20 text-center space-y-3 p-8 rounded-3xl bg-[#F4F6F8] border border-[#E2E6EB]">
+                    <div className="w-14 h-14 rounded-full bg-white border border-[#E2E6EB] flex items-center justify-center mx-auto text-[#6B7280]">
+                      <AlertCircle className="w-6 h-6" />
+                    </div>
+                    <h3 className="font-extrabold text-lg text-[#0B1F3A]">No products found matching your criteria</h3>
+                    <p className="text-xs text-[#6B7280] max-w-sm mx-auto">
+                      Try adjusting your search terms, changing the category filter, or resetting all filters.
+                    </p>
+                    <button
+                      onClick={() => {
+                        setSelectedCategory('all');
+                        setSelectedType('ALL');
+                        setSearchQuery('');
+                      }}
+                      className="px-4 py-2 rounded-xl bg-[#FFD21F] hover:bg-[#FFC400] text-[#0B1F3A] font-bold text-xs cursor-pointer shadow-md"
+                    >
+                      Reset All Filters
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         )}
@@ -166,7 +186,7 @@ export function App() {
       <ThemeSectionManager />
 
       {/* Modern Footer */}
-      <Footer />
+      <FooterPremium />
     </div>
   );
 }
