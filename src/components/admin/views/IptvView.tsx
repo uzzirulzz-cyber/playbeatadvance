@@ -22,31 +22,14 @@ interface IptvAccount {
 }
 
 export const IptvView: React.FC = () => {
-  const [accounts, setAccounts] = useState<IptvAccount[]>([
-    {
-      id: 'iptv-1',
-      username: 'pb_customer_8492',
-      serverUrl: 'http://stream.playbeat.digital:8080',
-      maxConnections: 2,
-      expireDate: '2027-08-16',
-      status: 'ONLINE',
-      channelsCount: 18450
-    },
-    {
-      id: 'iptv-2',
-      username: 'pb_vip_cinema_99',
-      serverUrl: 'http://pk-cdn.playbeat.digital:8080',
-      maxConnections: 4,
-      expireDate: '2026-12-31',
-      status: 'ONLINE',
-      channelsCount: 22000
-    }
-  ]);
+  const [accounts, setAccounts] = useState<IptvAccount[]>([]);
 
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
   const copyM3u = (acc: IptvAccount) => {
-    const url = `${acc.serverUrl}/get.php?username=${acc.username}&password=playbeat123&type=m3u_plus&output=ts`;
+    // NOTE: Password must be retrieved from secure environment variables, NOT hardcoded
+    const password = process.env.REACT_APP_IPTV_PASSWORD || '';
+    const url = `${acc.serverUrl}/get.php?username=${acc.username}&password=${password}&type=m3u_plus&output=ts`;
     navigator.clipboard.writeText(url);
     setCopiedId(acc.id);
     setTimeout(() => setCopiedId(null), 2500);

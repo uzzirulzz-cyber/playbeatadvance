@@ -49,29 +49,29 @@ export const SmartProjectorsSection: React.FC = () => {
   return (
     <section id="section-smart-projectors" className="w-full py-8 relative">
       {/* Pinned Top Bar Alert */}
-      <div className="mb-6 rounded-2xl bg-gradient-to-r from-purple-950/80 via-indigo-950/70 to-slate-900 border border-purple-500/30 p-4 sm:p-5 shadow-xl relative overflow-hidden">
+      <div className="mb-6 rounded-2xl bg-gradient-to-r from-blue-950/80 via-gray-900/70 to-slate-900 border border-yellow-500/30 p-4 sm:p-5 shadow-xl relative overflow-hidden">
         {/* Glow */}
-        <div className="absolute -top-10 -right-10 w-48 h-48 bg-purple-500/10 blur-3xl pointer-events-none" />
+        <div className="absolute -top-10 -right-10 w-48 h-48 bg-yellow-500/10 blur-3xl pointer-events-none" />
         
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 relative z-10">
           <div className="space-y-1.5">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/40 text-[11px] font-black uppercase tracking-wider">
-                <Sparkles className="w-3 h-3 text-purple-400" />
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-yellow-500/20 text-yellow-300 border border-yellow-500/40 text-[11px] font-black uppercase tracking-wider">
+                <Sparkles className="w-3 h-3 text-yellow-400" />
                 Pinned Spotlight Collection
               </span>
               <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-[11px] font-bold">
                 <Truck className="w-3 h-3" />
                 Free Nationwide Delivery (Pakistan)
               </span>
-              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-indigo-500/10 text-indigo-300 border border-indigo-500/30 text-[11px] font-bold">
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-blue-500/10 text-blue-300 border border-blue-500/30 text-[11px] font-bold">
                 <ShieldCheck className="w-3 h-3" />
                 1-Year Replacement Warranty
               </span>
             </div>
 
             <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight flex items-center gap-2.5">
-              <Projector className="w-6 h-6 text-purple-400 shrink-0" />
+              <Projector className="w-6 h-6 text-yellow-400 shrink-0" />
               <span>Smart Android & 4K Cinema Projectors</span>
             </h2>
 
@@ -88,17 +88,17 @@ export const SmartProjectorsSection: React.FC = () => {
                 onClick={() => setShowProfitBreakdown(!showProfitBreakdown)}
                 className={`px-3 py-2 rounded-xl text-xs font-bold transition-all border cursor-pointer ${
                   showProfitBreakdown 
-                    ? 'bg-purple-600 text-white border-purple-400 shadow-lg shadow-purple-600/30' 
-                    : 'bg-slate-800/80 text-purple-300 border-slate-700 hover:bg-slate-800'
+                    ? 'bg-yellow-600 text-slate-900 border-yellow-400 shadow-lg shadow-yellow-600/30' 
+                    : 'bg-slate-800/80 text-yellow-300 border-slate-700 hover:bg-slate-800'
                 }`}
               >
                 {showProfitBreakdown ? 'Hide Margin Data' : 'Show Admin Margins (Rs 8,000)'}
               </button>
             )}
 
-            <div className="hidden sm:flex flex-col items-end text-right p-2.5 rounded-xl bg-slate-900/80 border border-slate-800">
+            <div className="hidden sm:flex flex-col items-end text-right p-2.5 rounded-xl bg-slate-900/80 border border-yellow-700/50">
               <div className="text-[10px] text-slate-400 font-mono">Guaranteed Margin</div>
-              <div className="text-sm font-black text-emerald-400 font-mono">Rs 8,000 / unit</div>
+              <div className="text-sm font-black text-yellow-400 font-mono">Rs 8,000 / unit</div>
             </div>
           </div>
         </div>
@@ -119,7 +119,7 @@ export const SmartProjectorsSection: React.FC = () => {
               onClick={() => setActiveFilter(tab.id as any)}
               className={`px-3.5 py-1.5 rounded-xl text-xs font-bold shrink-0 transition-all cursor-pointer border ${
                 activeFilter === tab.id
-                  ? 'bg-purple-600 text-white border-purple-500 shadow-md shadow-purple-600/30'
+                  ? 'bg-blue-700 text-white border-blue-500 shadow-md shadow-blue-700/30'
                   : 'bg-slate-900/60 hover:bg-slate-800 text-slate-300 border-slate-800'
               }`}
             >
@@ -144,7 +144,7 @@ export const SmartProjectorsSection: React.FC = () => {
           return (
             <div
               key={prod.id}
-              className="group relative bg-[#0f172a] rounded-2xl border border-slate-800 hover:border-purple-500/60 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-950/40 flex flex-col justify-between overflow-hidden"
+              className="group relative bg-[#0f172a] rounded-2xl border border-slate-800 hover:border-yellow-500/60 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-950/40 flex flex-col justify-between overflow-hidden"
             >
               {/* Top Badges */}
               <div className="absolute top-3 left-3 z-20 flex flex-col gap-1.5">
@@ -158,7 +158,7 @@ export const SmartProjectorsSection: React.FC = () => {
                   </span>
                 )}
                 {prod.title.includes('HY300') && (
-                  <span className="px-2 py-0.5 rounded-lg bg-purple-600/90 text-white text-[10px] font-black shadow">
+                  <span className="px-2 py-0.5 rounded-lg bg-blue-600/90 text-white text-[10px] font-black shadow">
                     180° Gimbal
                   </span>
                 )}
@@ -206,12 +206,12 @@ export const SmartProjectorsSection: React.FC = () => {
               {/* Body Content */}
               <div className="p-4.5 flex-1 flex flex-col justify-between space-y-3">
                 <div className="space-y-1.5">
-                  <div className="text-[11px] text-purple-400 font-bold uppercase tracking-wider">
+                  <div className="text-[11px] text-yellow-400 font-bold uppercase tracking-wider">
                     {prod.vendor.storeName}
                   </div>
                   <h3 
                     onClick={() => setSelectedProduct(prod)}
-                    className="text-sm font-bold text-white group-hover:text-purple-300 transition-colors line-clamp-1 cursor-pointer"
+                    className="text-sm font-bold text-white group-hover:text-yellow-300 transition-colors line-clamp-1 cursor-pointer"
                   >
                     {prod.title}
                   </h3>
@@ -232,12 +232,12 @@ export const SmartProjectorsSection: React.FC = () => {
 
                 {/* Profit Margin Info (if enabled or admin) */}
                 {showProfitBreakdown && (
-                  <div className="p-2 rounded-xl bg-purple-950/50 border border-purple-500/30 text-[11px] space-y-1">
+                  <div className="p-2 rounded-xl bg-blue-950/50 border border-yellow-500/30 text-[11px] space-y-1">
                     <div className="flex items-center justify-between text-slate-300">
                       <span>Wholesale Cost:</span>
                       <span className="font-mono font-bold text-slate-200">Rs {prod.costPrice?.toLocaleString() || '22,500'}</span>
                     </div>
-                    <div className="flex items-center justify-between text-emerald-400 font-bold">
+                    <div className="flex items-center justify-between text-yellow-400 font-bold">
                       <span>Platform Profit:</span>
                       <span className="font-mono">Rs {prod.profit?.toLocaleString() || '8,000'}</span>
                     </div>
@@ -264,7 +264,7 @@ export const SmartProjectorsSection: React.FC = () => {
                     
                     <button
                       onClick={() => addToCart(prod, 1)}
-                      className="px-3.5 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold flex items-center gap-1.5 shadow-lg shadow-purple-600/30 transition-all cursor-pointer active:scale-95"
+                      className="px-3.5 py-2 rounded-xl bg-blue-700 hover:bg-blue-600 text-white text-xs font-bold flex items-center gap-1.5 shadow-lg shadow-blue-700/30 transition-all cursor-pointer active:scale-95"
                     >
                       <ShoppingCart className="w-3.5 h-3.5" />
                       <span>Buy Now</span>
@@ -283,7 +283,7 @@ export const SmartProjectorsSection: React.FC = () => {
           <div className="bg-[#0e1628] border border-slate-700 rounded-3xl max-w-xl w-full p-6 space-y-5 shadow-2xl relative max-h-[90vh] overflow-y-auto">
             <div className="flex items-start justify-between">
               <div>
-                <span className="px-2.5 py-0.5 rounded-full bg-purple-600/30 text-purple-300 border border-purple-500/40 text-[10px] font-mono font-bold">
+                <span className="px-2.5 py-0.5 rounded-full bg-blue-600/30 text-blue-300 border border-blue-500/40 text-[10px] font-mono font-bold">
                   OFFICIAL PAKISTAN HARDWARE SPECIFICATIONS
                 </span>
                 <h3 className="text-lg font-black text-white mt-1">{comparingProduct.title}</h3>

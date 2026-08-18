@@ -87,13 +87,13 @@ export const CategoryFilterBar: React.FC = () => {
               onClick={() => setSelectedCategory(cat.slug)}
               className={`flex items-center gap-2.5 px-4 py-2.5 rounded-2xl shrink-0 text-xs font-bold transition-all cursor-pointer border ${
                 isSelected
-                  ? 'bg-indigo-600 text-white border-indigo-400 shadow-lg shadow-indigo-600/30 scale-[1.02]'
+                  ? 'bg-blue-700 text-white border-yellow-400 shadow-lg shadow-blue-700/30 scale-[1.02]'
                   : 'bg-slate-900/60 hover:bg-slate-800 text-slate-300 hover:text-white border-slate-800'
               }`}
             >
               <div 
                 className={`w-6 h-6 rounded-lg flex items-center justify-center ${
-                  isSelected ? 'bg-white/20' : 'bg-slate-800 text-indigo-400'
+                  isSelected ? 'bg-white/20' : 'bg-slate-800 text-yellow-400'
                 }`}
               >
                 <Icon className="w-3.5 h-3.5" />
@@ -101,7 +101,7 @@ export const CategoryFilterBar: React.FC = () => {
               <span>{cat.name}</span>
               
               <span className={`px-1.5 py-0.5 rounded-full text-[10px] font-mono ${
-                isSelected ? 'bg-indigo-700 text-white' : 'bg-slate-800 text-slate-400'
+                isSelected ? 'bg-blue-800 text-white' : 'bg-slate-800 text-slate-400'
               }`}>
                 {count}
               </span>
@@ -124,7 +124,7 @@ export const CategoryFilterBar: React.FC = () => {
             <select
               value={selectedType}
               onChange={(e) => setSelectedType(e.target.value)}
-              className="h-9 px-3 pr-8 rounded-xl bg-slate-950/80 border border-slate-700/60 text-xs font-semibold text-slate-200 focus:outline-none focus:border-indigo-500 cursor-pointer appearance-none"
+              className="h-9 px-3 pr-8 rounded-xl bg-slate-950/80 border border-slate-700/60 text-xs font-semibold text-slate-200 focus:outline-none focus:border-yellow-500 cursor-pointer appearance-none"
             >
               {productTypes.map(t => (
                 <option key={t.value} value={t.value} className="bg-slate-900 text-slate-200">
@@ -140,7 +140,7 @@ export const CategoryFilterBar: React.FC = () => {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as any)}
-              className="h-9 px-3 pr-8 rounded-xl bg-slate-950/80 border border-slate-700/60 text-xs font-semibold text-slate-200 focus:outline-none focus:border-indigo-500 cursor-pointer appearance-none"
+              className="h-9 px-3 pr-8 rounded-xl bg-slate-950/80 border border-slate-700/60 text-xs font-semibold text-slate-200 focus:outline-none focus:border-yellow-500 cursor-pointer appearance-none"
             >
               {sortOptions.map(s => (
                 <option key={s.value} value={s.value} className="bg-slate-900 text-slate-200">

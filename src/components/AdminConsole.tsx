@@ -42,7 +42,7 @@ export const AdminConsole: React.FC = () => {
 
   const [activeTab, setActiveTab] = useState<AdminTab>('dashboard');
   const [passwordInput, setPasswordInput] = useState('');
-  const [usernameInput, setUsernameInput] = useState('admin@playbeat.digital');
+  const [usernameInput, setUsernameInput] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [loginError, setLoginError] = useState('');
   const [adminSearch, setAdminSearch] = useState('');
@@ -57,11 +57,7 @@ export const AdminConsole: React.FC = () => {
     }
   };
 
-  const handleAutoFill = () => {
-    setPasswordInput('playbeat1122');
-    setUsernameInput('admin@playbeat.digital');
-    setLoginError('');
-  };
+  // Removed handleAutoFill() - credentials should never be hardcoded or auto-filled
 
   const handleResetAll = () => {
     setAdminSearch('');
@@ -116,19 +112,12 @@ export const AdminConsole: React.FC = () => {
             <div>
               <div className="flex items-center justify-between mb-1.5">
                 <label className="block text-slate-300 font-bold">Master Password</label>
-                <button
-                  type="button"
-                  onClick={handleAutoFill}
-                  className="text-[11px] text-purple-400 hover:text-purple-300 font-semibold cursor-pointer underline"
-                >
-                  Autofill demo (playbeat1122)
-                </button>
               </div>
               <div className="relative">
                 <input
                   type={showPassword ? 'text' : 'password'}
                   required
-                  placeholder="Enter playbeat1122"
+                  placeholder="Enter master password"
                   value={passwordInput}
                   onChange={(e) => setPasswordInput(e.target.value)}
                   className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-purple-500 transition-colors font-mono"
@@ -152,17 +141,10 @@ export const AdminConsole: React.FC = () => {
             </button>
           </form>
 
-          {/* Quick autofill helper */}
-          <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800 text-[11px] text-slate-400 flex items-center justify-between">
-            <div>
-              Password: <code className="text-purple-400 font-mono font-bold">playbeat1122</code>
-            </div>
-            <button
-              onClick={handleAutoFill}
-              className="px-2.5 py-1 rounded-lg bg-purple-600/20 text-purple-300 border border-purple-500/30 font-bold hover:bg-purple-600/30 transition-colors cursor-pointer"
-            >
-              Fill Credentials
-            </button>
+          {/* Security notice */}
+          <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800 text-[11px] text-slate-400 flex items-center gap-2">
+            <ShieldCheck className="w-4 h-4 shrink-0 text-emerald-400" />
+            <span>Credentials must be entered securely. Never share or hardcode passwords.</span>
           </div>
 
           <div className="text-center pt-2">

@@ -68,7 +68,7 @@ export const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
   return (
     <div 
       onClick={() => setSelectedProduct(product)}
-      className="group relative rounded-3xl p-4 glass-panel border border-slate-800/80 hover:border-indigo-500/50 glow-hover transition-all duration-300 flex flex-col justify-between cursor-pointer overflow-hidden bg-slate-900/40"
+      className="group relative rounded-3xl p-4 glass-panel border border-slate-800/80 hover:border-yellow-500/50 glow-hover transition-all duration-300 flex flex-col justify-between cursor-pointer overflow-hidden bg-slate-900/40"
     >
       {/* Top Banner Cover */}
       <div className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden bg-slate-950 border border-slate-800/80 mb-3.5 group-hover:shadow-lg group-hover:shadow-indigo-950/50 transition-all">
@@ -143,7 +143,7 @@ export const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
         <div>
           {/* Vendor & Category strip */}
           <div className="flex items-center justify-between text-[11px] text-slate-400 mb-1">
-            <span className="text-indigo-400 font-semibold truncate max-w-[130px]">
+            <span className="text-yellow-400 font-semibold truncate max-w-[130px]">
               {product.category.name}
             </span>
             <div className="flex items-center gap-1 text-[10px]">
@@ -155,7 +155,7 @@ export const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
           </div>
 
           {/* Product Title */}
-          <h3 className="font-bold text-sm text-white group-hover:text-indigo-300 transition-colors line-clamp-1">
+          <h3 className="font-bold text-sm text-white group-hover:text-yellow-300 transition-colors line-clamp-1">
             {product.title}
           </h3>
 
@@ -170,7 +170,7 @@ export const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
           <div>
             <div className="text-[10px] text-slate-400 uppercase font-semibold">Price</div>
             <div className="flex items-baseline gap-1.5">
-              <span className="text-base font-extrabold text-emerald-400">
+              <span className="text-base font-extrabold text-yellow-400">
                 {formatCurrency(product.discountPrice || product.price, currency)}
               </span>
               {product.discountPrice && (
@@ -187,7 +187,7 @@ export const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
               onClick={handleAddToCart}
               className={`p-2 rounded-xl border text-xs font-bold transition-all cursor-pointer ${
                 addedAnim 
-                  ? 'bg-emerald-600 border-emerald-500 text-white' 
+                  ? 'bg-blue-700 border-blue-500 text-white' 
                   : 'bg-slate-800/80 hover:bg-slate-700 border-slate-700 text-slate-200 hover:text-white'
               }`}
               title="Add to Cart"
@@ -197,7 +197,7 @@ export const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
 
             <button
               onClick={handleQuickBuy}
-              className="px-3 py-2 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold text-xs shadow-md shadow-indigo-600/25 transition-all cursor-pointer flex items-center gap-1"
+              className="px-3 py-2 rounded-xl bg-gradient-to-r from-blue-700 to-blue-600 hover:from-blue-600 hover:to-blue-500 text-white font-bold text-xs shadow-md shadow-blue-700/25 transition-all cursor-pointer flex items-center gap-1"
             >
               <span>Buy</span>
             </button>

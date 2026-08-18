@@ -90,7 +90,7 @@ export const Footer: React.FC = () => {
               <div>
                 <h4 className="font-extrabold text-sm text-white flex items-center gap-1.5">
                   <span>Download Our App</span>
-                  <span className="px-1.5 py-0.2 rounded bg-indigo-500/20 text-indigo-300 text-[9px] font-bold">PWA / iOS / Android</span>
+                  <span className="px-1.5 py-0.2 rounded bg-blue-500/20 text-blue-300 text-[9px] font-bold">PWA / iOS / Android</span>
                 </h4>
                 <p className="text-[11px] text-slate-400">
                   Install on your phone for instant access & live updates.
@@ -149,11 +149,11 @@ export const Footer: React.FC = () => {
                 <span><strong className="text-white font-mono">info@playbeat.digital</strong> <span className="text-slate-500 text-[11px]">(General)</span></span>
               </div>
               <div className="flex items-center gap-2">
-                <Mail className="w-3.5 h-3.5 text-indigo-400" />
+                <Mail className="w-3.5 h-3.5 text-yellow-400" />
                 <span><strong className="text-white font-mono">support@playbeat.digital</strong> <span className="text-slate-500 text-[11px]">(Support)</span></span>
               </div>
               <div className="flex items-center gap-2">
-                <Mail className="w-3.5 h-3.5 text-purple-400" />
+                <Mail className="w-3.5 h-3.5 text-blue-400" />
                 <span><strong className="text-white font-mono">director@playbeat.digital</strong> <span className="text-slate-500 text-[11px]">(Director)</span></span>
               </div>
             </div>

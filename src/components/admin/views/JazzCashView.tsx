@@ -11,9 +11,9 @@ import {
 } from 'lucide-react';
 
 export const JazzCashView: React.FC = () => {
-  const [merchantId, setMerchantId] = useState('MC_PLAYBEAT_849201');
-  const [password, setPassword] = useState('pb_live_pass_2026');
-  const [integritySalt, setIntegritySalt] = useState('salt_9f83a8274920482103');
+  const [merchantId, setMerchantId] = useState('');
+  const [password, setPassword] = useState('');
+  const [integritySalt, setIntegritySalt] = useState('');
   const [searchTxn, setSearchTxn] = useState('');
   const [queryResult, setQueryResult] = useState<any>(null);
 

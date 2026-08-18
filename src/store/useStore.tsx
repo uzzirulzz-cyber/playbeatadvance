@@ -411,12 +411,16 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   };
 
   const adminLogin = (password: string) => {
-    if (password === 'playbeat1122') {
+    const correctPassword = import.meta.env.REACT_APP_ADMIN_PASSWORD;
+    if (!correctPassword) {
+      return { success: false, message: 'Admin authentication not configured. Contact system administrator.' };
+    }
+    if (password === correctPassword) {
       setIsAdminAuthenticated(true);
       localStorage.setItem('playbeat_admin_auth', 'true');
       return { success: true, message: 'Authentication successful! Welcome to PlayBeat Admin.' };
     }
-    return { success: false, message: 'Invalid operator credentials. Please enter correct password (playbeat1122).' };
+    return { success: false, message: 'Invalid credentials. Please try again.' };
   };
 
   const adminLogout = () => {

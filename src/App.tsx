@@ -108,9 +108,11 @@ export function App() {
             {/* Marketplace Grid & Filters Container */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 space-y-8">
               
-              {/* Pinned Smart Projectors Showcase Section */}
+              {/* Pinned Smart Projectors Showcase Section - Sticky at Top */}
               {sectionConfig.smartProjectors && (
-                <SmartProjectorsSection />
+                <div className="sticky top-0 z-40 -mx-4 sm:-mx-6 px-4 sm:px-6 pb-4 bg-gradient-to-b from-slate-900 to-transparent backdrop-blur-lg">
+                  <SmartProjectorsSection />
+                </div>
               )}
 
               {/* Category Slider & Filter Bar */}
