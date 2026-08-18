@@ -165,7 +165,7 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({
         </div>
         <button
           onClick={onLogout}
-          title="Sign out of wp-admin"
+          title="Sign out of Admin Panel"
           className="p-1.5 rounded-lg text-slate-400 hover:text-red-400 hover:bg-red-950/30 transition-colors cursor-pointer"
         >
           <LogOut className="w-4 h-4" />

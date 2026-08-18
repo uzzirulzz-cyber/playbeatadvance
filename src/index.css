@@ -10,7 +10,7 @@
   body {
     font-family: var(--font-sans);
     overflow-x: hidden;
-    background-color: #12141a;
+    background-color: #080d1a;
     color: #f1f5f9;
   }
 
@@ -23,18 +23,19 @@
   }
 }
 
-/* ===== MARTFURY THEME STYLING PRESETS ===== */
+/* ===== SIGNATURE NAVY, GREY, BLACK & YELLOW THEME ===== */
 
-/* Martfury Theme (Signature Envato Martfury Yellow & Modern Charcoal) */
-.theme-obsidian,
+/* Default Navy, Grey, Black & Yellow Theme */
+.theme-navy,
 .theme-martfury,
+.theme-obsidian,
 :root {
-  --bg-main: #12141a;
-  --bg-card: rgba(24, 27, 34, 0.95);
-  --bg-surface: rgba(33, 38, 48, 0.85);
-  --border-color: rgba(60, 68, 84, 0.7);
+  --bg-main: #080d1a;
+  --bg-card: rgba(15, 23, 42, 0.95);
+  --bg-surface: rgba(22, 34, 56, 0.9);
+  --border-color: rgba(71, 85, 105, 0.35);
   --accent-primary: #fcb800;
-  --accent-secondary: #ffcd38;
+  --accent-secondary: #fbbf24;
   --accent-glow: rgba(252, 184, 0, 0.28);
   --text-main: #f8fafc;
   --text-muted: #94a3b8;

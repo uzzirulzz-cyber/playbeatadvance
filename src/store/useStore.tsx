@@ -161,11 +161,71 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     ];
   });
 
+  // Initialize view and role based on browser URL pathname
+  const getInitialView = (): ActiveView => {
+    if (typeof window !== 'undefined') {
+      const path = window.location.pathname.toLowerCase();
+      if (path === '/adminpanel' || path === '/admin' || path === '/wp-admin') return 'admin';
+      if (path === '/vendor') return 'vendor';
+      if (path === '/affiliate') return 'affiliate';
+      if (path === '/storefront') return 'storefront';
+    }
+    return 'storefront';
+  };
+
+  const getInitialRole = (): UserRole => {
+    if (typeof window !== 'undefined') {
+      const path = window.location.pathname.toLowerCase();
+      if (path === '/adminpanel' || path === '/admin' || path === '/wp-admin') return 'ADMIN';
+      if (path === '/vendor') return 'VENDOR';
+      if (path === '/affiliate') return 'AFFILIATE';
+    }
+    return 'CUSTOMER';
+  };
+
   const [coupons, setCoupons] = useState<Coupon[]>(INITIAL_COUPONS);
   const [notifications, setNotifications] = useState<NotificationItem[]>(INITIAL_NOTIFICATIONS);
   const [user, setUser] = useState<User>(DEMO_USER);
-  const [activeRole, setActiveRole] = useState<UserRole>('CUSTOMER');
-  const [activeView, setActiveView] = useState<ActiveView>('storefront');
+  const [activeRole, setActiveRole] = useState<UserRole>(getInitialRole);
+  const [activeView, setActiveViewState] = useState<ActiveView>(getInitialView);
+
+  const setActiveView = (view: ActiveView) => {
+    setActiveViewState(view);
+    if (typeof window !== 'undefined') {
+      let targetPath = '/';
+      if (view === 'storefront') targetPath = '/storefront';
+      else if (view === 'admin') targetPath = '/adminpanel';
+      else if (view === 'vendor') targetPath = '/vendor';
+      else if (view === 'affiliate') targetPath = '/affiliate';
+
+      if (window.location.pathname !== targetPath && !(view === 'storefront' && window.location.pathname === '/')) {
+        window.history.pushState({ view }, '', targetPath);
+      }
+    }
+  };
+
+  // Sync with browser back/forward buttons
+  useEffect(() => {
+    const handlePopState = () => {
+      const path = window.location.pathname.toLowerCase();
+      if (path === '/adminpanel' || path === '/admin' || path === '/wp-admin') {
+        setActiveViewState('admin');
+        setActiveRole('ADMIN');
+      } else if (path === '/vendor') {
+        setActiveViewState('vendor');
+        setActiveRole('VENDOR');
+      } else if (path === '/affiliate') {
+        setActiveViewState('affiliate');
+        setActiveRole('AFFILIATE');
+      } else {
+        setActiveViewState('storefront');
+        setActiveRole('CUSTOMER');
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
 
   // Filtering states
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
@@ -351,12 +411,12 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   };
 
   const adminLogin = (password: string) => {
-    if (password === 'playbeat123') {
+    if (password === 'playbeat1122') {
       setIsAdminAuthenticated(true);
       localStorage.setItem('playbeat_admin_auth', 'true');
       return { success: true, message: 'Authentication successful! Welcome to PlayBeat Admin.' };
     }
-    return { success: false, message: 'Invalid operator credentials. Password is required.' };
+    return { success: false, message: 'Invalid operator credentials. Please enter correct password (playbeat1122).' };
   };
 
   const adminLogout = () => {

@@ -58,7 +58,7 @@ export const AdminConsole: React.FC = () => {
   };
 
   const handleAutoFill = () => {
-    setPasswordInput('playbeat123');
+    setPasswordInput('playbeat1122');
     setUsernameInput('admin@playbeat.digital');
     setLoginError('');
   };
@@ -70,7 +70,7 @@ export const AdminConsole: React.FC = () => {
     setTimeout(() => setResetToast(false), 2500);
   };
 
-  // If user is not authenticated, show WP-Admin gate
+  // If user is not authenticated, show Admin Login gate
   if (!isAdminAuthenticated) {
     return (
       <div className="min-h-[85vh] flex items-center justify-center p-4">
@@ -86,10 +86,10 @@ export const AdminConsole: React.FC = () => {
             </div>
             <h1 className="text-2xl font-black tracking-tight text-white pt-2">
               <span>play</span><span className="text-[#a855f7]">beat</span>
-              <span className="text-xs text-slate-400 font-mono block mt-0.5">playbeat.digital/wp-admin</span>
+              <span className="text-xs text-slate-400 font-mono block mt-0.5">playbeat.digital/adminpanel</span>
             </h1>
             <p className="text-xs text-slate-400">
-              Operator Panel • Master Authorization Required
+              Admin Panel • Master Authorization Required
             </p>
           </div>
 
@@ -121,14 +121,14 @@ export const AdminConsole: React.FC = () => {
                   onClick={handleAutoFill}
                   className="text-[11px] text-purple-400 hover:text-purple-300 font-semibold cursor-pointer underline"
                 >
-                  Autofill demo (playbeat123)
+                  Autofill demo (playbeat1122)
                 </button>
               </div>
               <div className="relative">
                 <input
                   type={showPassword ? 'text' : 'password'}
                   required
-                  placeholder="Enter playbeat123"
+                  placeholder="Enter playbeat1122"
                   value={passwordInput}
                   onChange={(e) => setPasswordInput(e.target.value)}
                   className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-purple-500 transition-colors font-mono"
@@ -148,14 +148,14 @@ export const AdminConsole: React.FC = () => {
               className="w-full py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold transition-all shadow-lg shadow-purple-600/30 cursor-pointer flex items-center justify-center gap-2"
             >
               <Lock className="w-4 h-4" />
-              <span>Log in to playbeat.digital/wp-admin</span>
+              <span>Log in to Admin Panel</span>
             </button>
           </form>
 
           {/* Quick autofill helper */}
           <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800 text-[11px] text-slate-400 flex items-center justify-between">
             <div>
-              Password: <code className="text-purple-400 font-mono font-bold">playbeat123</code>
+              Password: <code className="text-purple-400 font-mono font-bold">playbeat1122</code>
             </div>
             <button
               onClick={handleAutoFill}

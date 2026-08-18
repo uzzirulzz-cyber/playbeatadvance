@@ -303,7 +303,7 @@ async function startServer() {
   // 6. Admin Authentication & Dashboard Stats
   app.post('/api/admin/login', (req, res) => {
     const { password } = req.body;
-    if (password === 'playbeat123' || password === 'admin' || password === 'admin123') {
+    if (password === 'playbeat1122' || password === 'admin' || password === 'admin123') {
       return res.json({ success: true, token: 'playbeat_admin_jwt_session_2026' });
     }
     return res.status(401).json({ success: false, message: 'Invalid Admin Credentials' });
