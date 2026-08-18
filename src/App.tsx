@@ -150,12 +150,12 @@ export function App() {
                     ))}
                   </div>
                 ) : (
-                  <div className="py-20 text-center space-y-3 p-8 rounded-3xl bg-[#F4F6F8] border border-[#E2E6EB]">
-                    <div className="w-14 h-14 rounded-full bg-white border border-[#E2E6EB] flex items-center justify-center mx-auto text-[#6B7280]">
+                  <div className="py-20 text-center space-y-3 p-8 rounded-[28px] bg-[#0B1F3A]/90 border border-white/10 shadow-[0_18px_45px_rgba(2,6,23,0.35)]">
+                    <div className="w-14 h-14 rounded-full bg-[#07182d] border border-white/10 flex items-center justify-center mx-auto text-[#FFD21F]">
                       <AlertCircle className="w-6 h-6" />
                     </div>
-                    <h3 className="font-extrabold text-lg text-[#0B1F3A]">No products found matching your criteria</h3>
-                    <p className="text-xs text-[#6B7280] max-w-sm mx-auto">
+                    <h3 className="font-extrabold text-lg text-white">No products found matching your criteria</h3>
+                    <p className="text-xs text-slate-300 max-w-sm mx-auto">
                       Try adjusting your search terms, changing the category filter, or resetting all filters.
                     </p>
                     <button

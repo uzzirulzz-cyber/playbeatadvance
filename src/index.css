@@ -10,8 +10,8 @@
   body {
     font-family: var(--font-sans);
     overflow-x: hidden;
-    background-color: #FFFFFF;
-    color: #263241;
+    background-color: #07182d;
+    color: #e5edf8;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -33,16 +33,16 @@
   /* Primary Colors */
   --primary-navy: #0B1F3A;
   --accent-yellow: #FFD21F;
-  --bg-white: #FFFFFF;
-  --bg-light-grey: #F4F6F8;
-  --text-dark-grey: #263241;
-  --border-light: #E2E6EB;
+  --bg-white: #07182d;
+  --bg-light-grey: #0F2342;
+  --text-dark-grey: #dfeaf8;
+  --border-light: rgba(255, 255, 255, 0.1);
   
   /* Layout Colors */
-  --bg-main: #FFFFFF;
-  --bg-card: #FFFFFF;
-  --bg-surface: #F4F6F8;
-  --border-color: #E2E6EB;
+  --bg-main: #07182d;
+  --bg-card: rgba(11, 31, 58, 0.9);
+  --bg-surface: #0F2342;
+  --border-color: rgba(255, 255, 255, 0.1);
   
   /* Accent Colors */
   --accent-primary: #FFD21F;
@@ -50,8 +50,8 @@
   --accent-glow: rgba(255, 210, 31, 0.15);
   
   /* Text Colors */
-  --text-main: #263241;
-  --text-muted: #6B7280;
+  --text-main: #edf5ff;
+  --text-muted: #a4b4c9;
   
   /* Interactive States */
   --hover-overlay: rgba(11, 31, 58, 0.05);
